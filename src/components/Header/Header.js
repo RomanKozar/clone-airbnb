@@ -4,7 +4,7 @@ function Header() {
   return (
     <div className="container">
       <p>Hello</p>
-      <p>There</p>
+      <p>The</p>
     </div>
   );
 }
