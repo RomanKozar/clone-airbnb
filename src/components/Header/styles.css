@@ -1,0 +1,35 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  position: sticky;
+  top: 0;
+}
+
+.navbar-logo {
+  height: 3rem;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--grey);
+}
+
+.search-bar-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-right: 1px solid var(--grey);
+  padding-right: 0.5rem;
+}
+
+.search-bar-text2 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--grey);
+  padding-right: 0.5rem;
+}
