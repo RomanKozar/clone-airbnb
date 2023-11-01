@@ -4,6 +4,7 @@ import "./styles.css";
 import logo from "../../assets/img/logotip.png";
 import SearchRoundedIcon from "../../assets/img/search.svg";
 import LanguageIcon from "../../assets/img/Langues.svg";
+import BasicMenu from "./ProfileMenu";
 
 function Header() {
   return (
@@ -26,11 +27,11 @@ function Header() {
             src={LanguageIcon}
             alt="laeng"
             className="language-icon"
-            sx={{ fontSize: "1.5rem" }}
+            sx={{ fontSize: "1.3rem" }}
           />
         </div>
         <div className="profile-div">
-          {/* <img src={LanguageIcon} alt="laeng" /> */}
+          <BasicMenu />
         </div>
       </div>
     </div>
