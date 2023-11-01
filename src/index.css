@@ -3,7 +3,9 @@
 :root {
   --black: #000;
   --grey: #ddd;
+  --font-grey: #717171;
   --white: #ffffff;
+  --theme: #00000040;
 }
 
 body {
