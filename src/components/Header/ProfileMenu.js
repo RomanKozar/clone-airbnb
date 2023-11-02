@@ -40,9 +40,20 @@ export default function BasicMenu() {
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}
+        sx={{
+          ".MuiPaper-root": {
+            borderRadius: "1rem",
+            marginTop: "0.5rem",
+            border: "2px solid var(--theme)",
+            boxShadow: "3px -2px 6px 0px rgba(0, 0, 0, 0.25) inset",
+            filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
+          },
+        }}
       >
-        <MenuItem onClick={handleClose}>Зареєструватися</MenuItem>
-        <MenuItem onClick={handleClose}>Увійти</MenuItem>
+        <MenuItem className="menu-items" onClick={handleClose}>
+          Зареєструватися
+        </MenuItem>
+        <MenuItem className="menu-items" onClick={handleClose}>Увійти</MenuItem>
         <div
           style={{
             height: "1px",
@@ -50,10 +61,10 @@ export default function BasicMenu() {
             width: "100",
           }}
         />
-        <MenuItem onClick={handleClose}>
+        <MenuItem className="menu-items" onClick={handleClose}>
           Запропонувати помешкання на Airbnb
         </MenuItem>
-        <MenuItem onClick={handleClose}>Довідковий центр</MenuItem>
+        <MenuItem className="menu-items" onClick={handleClose}>Довідковий центр</MenuItem>
       </Menu>
     </div>
   );

@@ -1,0 +1,8 @@
+.filter-div {
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: auto;
+  width: 100%;
+}

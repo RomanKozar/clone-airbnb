@@ -5,6 +5,8 @@ import logo from "../../assets/img/logotip.png";
 import SearchRoundedIcon from "../../assets/img/search.svg";
 import LanguageIcon from "../../assets/img/Langues.svg";
 import BasicMenu from "./ProfileMenu";
+import SimpleBottomNavigation from "./BottomNav";
+import MobileSearchBar from "../MobileSearchBar";
 
 function Header() {
   return (
@@ -34,6 +36,8 @@ function Header() {
           <BasicMenu />
         </div>
       </div>
+      <MobileSearchBar />
+      <SimpleBottomNavigation />
     </div>
   );
 }
