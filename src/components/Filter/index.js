@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
-
-import { ReactComponent as svg1 } from "../../assets/img/city.svg";
-
-const links = [svg1];
+import { links } from "../../assets/images-links";
 
 function Filter() {
+  const [selectedFilter, setSelectedFilter] = useState();
+
   return (
     <div className="filter-div">
-      {links.map((SvgComponent, i) => (
-        <SvgComponent key={i} />
+      {links.map((item, i) => (
+        <div
+          key={i}
+          className={`links-box ${i === selectedFilter && "selected-box"}`}
+          onClick={() => {
+            console.log("select", i);
+            setSelectedFilter(i);
+          }}
+        >
+          <img alt="Cat" src={item.imgSrc} className="links-img" />
+          <p
+            className={`links-label ${i === selectedFilter && "selected-label"}`}
+          >
+            {item.label}
+          </p>
+        </div>
       ))}
     </div>
   );

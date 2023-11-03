@@ -5,6 +5,8 @@
   padding: 1rem 3rem;
   position: sticky;
   top: 0;
+  background-color: var(--white);
+  z-index: 1000;
 }
 
 .navbar-logo {
@@ -166,10 +168,21 @@
 }
 
 @media only screen and (max-width: 800px) {
-  .navbar-logo,
-  .profile-container,
-  .search-bar {
+  .search-bar,
+  .airbnb-your-home,
+  .global-div {
     display: none;
+  }
+
+  .navbar {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .profile-menu-flex {
+    position: fixed;
+    top: 1.2rem;
+    right: 2rem;
   }
 
   .bottom-nav {
