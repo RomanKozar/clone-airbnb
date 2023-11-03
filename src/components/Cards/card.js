@@ -1,11 +1,11 @@
 import React from "react";
 import hotel from "../../assets/hotel/Фото 1.webp";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import "swiper/css";
+// import "swiper/css/pagination";
+// import "swiper/css/navigation";
+// import { Pagination, Navigation } from "swiper";
 
 import "./styles.css";
 
