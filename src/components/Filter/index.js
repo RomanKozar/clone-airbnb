@@ -1,10 +1,7 @@
-import React, { useState } from "react";
 import "./styles.css";
 import { links } from "../../assets/images-links";
 
-function Filter() {
-  const [selectedFilter, setSelectedFilter] = useState();
-
+function Filter({ selectedFilter, setSelectedFilter }) {
   return (
     <div className="filter-div">
       {links.map((item, i) => (
@@ -18,7 +15,9 @@ function Filter() {
         >
           <img alt="Cat" src={item.imgSrc} className="links-img" />
           <p
-            className={`links-label ${i === selectedFilter && "selected-label"}`}
+            className={`links-label ${
+              i === selectedFilter && "selected-label"
+            }`}
           >
             {item.label}
           </p>

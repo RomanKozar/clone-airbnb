@@ -3,7 +3,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuRoundedIcon from "../../assets/img/menu.svg";
 import AccountCircleRoundedIcon from "../../assets/img/user_icon.png";
+
 import "./styles.css";
+import Login from "../Pages/Login";
+import Register from "../Pages/Register";
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -53,7 +56,14 @@ export default function BasicMenu() {
         <MenuItem className="menu-items" onClick={handleClose}>
           Зареєструватися
         </MenuItem>
-        <MenuItem className="menu-items" onClick={handleClose}>Увійти</MenuItem>
+        <MenuItem
+          className="menu-items"
+          onClick={handleClose}
+          Link
+          href="/login"
+        >
+          Увійти
+        </MenuItem>
         <div
           style={{
             height: "1px",
@@ -64,7 +74,9 @@ export default function BasicMenu() {
         <MenuItem className="menu-items" onClick={handleClose}>
           Запропонувати помешкання на Airbnb
         </MenuItem>
-        <MenuItem className="menu-items" onClick={handleClose}>Довідковий центр</MenuItem>
+        <MenuItem className="menu-items" onClick={handleClose}>
+          Довідковий центр
+        </MenuItem>
       </Menu>
     </div>
   );
