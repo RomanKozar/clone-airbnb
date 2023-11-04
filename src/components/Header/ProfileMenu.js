@@ -5,8 +5,8 @@ import MenuRoundedIcon from "../../assets/img/menu.svg";
 import AccountCircleRoundedIcon from "../../assets/img/user_icon.png";
 
 import "./styles.css";
-import Login from "../Pages/Login";
-import Register from "../Pages/Register";
+// import Login from "../Pages/Login";
+// import Register from "../Pages/Register";
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
