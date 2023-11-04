@@ -1,15 +1,15 @@
 import React from "react";
-import "./styles.css";
 import Card from "./card";
+import { list } from "../../assets/cards-list";
+
+import "./styles.css";
 
 function Cards() {
   return (
     <div className="cards-flex">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {list.map((card, i) => (
+        <Card card={card} key={i} />
+      ))}
     </div>
   );
 }

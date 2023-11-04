@@ -49,3 +49,9 @@
 .selected-label {
   font-weight: 700;
 }
+
+@media only screen and (max-width: 800px) {
+  .filter-div {
+    padding: 0.5rem;
+  }
+}
