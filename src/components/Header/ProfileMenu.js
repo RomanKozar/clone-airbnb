@@ -3,10 +3,9 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuRoundedIcon from "../../assets/img/menu.svg";
 import AccountCircleRoundedIcon from "../../assets/img/user_icon.png";
+import { useNavigate } from "react-router-dom";
 
 import "./styles.css";
-// import Login from "../Pages/Login";
-// import Register from "../Pages/Register";
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -17,6 +16,8 @@ export default function BasicMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -58,9 +59,10 @@ export default function BasicMenu() {
         </MenuItem>
         <MenuItem
           className="menu-items"
-          onClick={handleClose}
-          Link
-          href="/login"
+          onClick={() => {
+            navigate("/login");
+            handleClose();
+          }}
         >
           Увійти
         </MenuItem>
