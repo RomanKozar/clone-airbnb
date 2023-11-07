@@ -54,7 +54,13 @@ export default function BasicMenu() {
           },
         }}
       >
-        <MenuItem className="menu-items" onClick={handleClose}>
+        <MenuItem
+          className="menu-items"
+          onClick={() => {
+            navigate("/register");
+            handleClose();
+          }}
+        >
           Зареєструватися
         </MenuItem>
         <MenuItem

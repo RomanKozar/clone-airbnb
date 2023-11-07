@@ -1,25 +1,23 @@
 import "./App.css";
-import { list, list2 } from "./assets/cards-list";
+import { list } from "./assets/cards-list";
 import Cards from "./components/Cards";
 import Filter from "./components/Filter";
 import Header from "./components/Header";
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/Pages/Login";
+import Register from "./components/Pages/Register";
 
 function App() {
-  const [selectedFilter, setSelectedFilter] = useState(0);
-
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Header />}>
+          <Route index element={<Cards list={list} />} />
           <Route index element={<Filter />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Route>
       </Routes>
-
-      {selectedFilter === 0 ? <Cards list={list} /> : <Cards list={list2} />}
     </div>
   );
 }

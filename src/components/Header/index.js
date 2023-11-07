@@ -7,13 +7,21 @@ import LanguageIcon from "../../assets/img/Langues.svg";
 import BasicMenu from "./ProfileMenu";
 import SimpleBottomNavigation from "./BottomNav";
 import MobileSearchBar from "../MobileSearchBar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <Fragment>
       <div className="navbar">
-        <img src={logo} alt="logo" className="navbar-logo" />
+        <img
+          src={logo}
+          alt="logo"
+          className="navbar-logo"
+          onClick={() => {
+            navigate("/");
+          }}
+        />
         <div className="search-bar">
           <div className="search-bar-text">Будь-куди</div>
           <div className="search-bar-text">Будь-який тиждень</div>
