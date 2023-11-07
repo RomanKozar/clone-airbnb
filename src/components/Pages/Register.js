@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./register.css";
 import Google_icon from "../../assets/img/google_icon.svg";
 import Apple_icon from "../../assets/img/apple.svg";
@@ -11,7 +11,7 @@ import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import Facebook_icon from "../../assets/img/facebook_icon.svg";
 
 function Register() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     <form className="form">
       <div className="inputForm">
