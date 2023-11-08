@@ -93,6 +93,10 @@
   cursor: pointer;
 }
 
+.button-submit:disabled {
+  background-color: var(--theme);
+}
+
 .p {
   text-align: center;
   color: black;
