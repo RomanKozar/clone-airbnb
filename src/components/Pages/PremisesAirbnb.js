@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
+import "./premises.css";
 
-export default class PremisesAirbnb extends Component {
-  render() {
-    return <div>Airbnb</div>;
-  }
+function PremisesAirbnb() {
+  return <div className="color">PremisesAirbnb</div>;
 }
+
+export default PremisesAirbnb;

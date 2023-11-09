@@ -92,98 +92,108 @@ function Login() {
   const password = useInput("", { isEmpty: true, minLength: 5, maxLength: 8 });
 
   return (
-    <form className="form">
-      <div className="flex-column">
-        <label>Електронна пошта</label>
-      </div>
-      {email.isDirty && email.isEmpty && (
-        <div style={{ color: "red" }}>Поле не може бути пустим</div>
-      )}
-      {email.isDirty && email.minLengthError && (
-        <div style={{ color: "red" }}>Замала довжина</div>
-      )}
-      {email.isDirty && email.emailError && (
-        <div style={{ color: "red" }}>Некоректний email</div>
-      )}
-      <div className="inputForm">
-        <img src={Email_icon} alt="google" width="20" height="20" />
+    <div>
+      <div className="form">
+        <div className="flex-column">
+          <label>Електронна пошта</label>
+        </div>
+        <div className="flex-column-error">
+          {email.isDirty && email.isEmpty && (
+            <div style={{ color: "red" }}>Поле не може бути пустим</div>
+          )}
+          {email.isDirty && email.minLengthError && (
+            <div style={{ color: "red" }}>Замала довжина</div>
+          )}
+          {email.isDirty && email.emailError && (
+            <div style={{ color: "red" }}>Некоректний email</div>
+          )}
+        </div>
 
-        <input
-          onChange={email.onChange}
-          onBlur={email.onBlur}
-          value={email.value}
-          placeholder="Введіть свою електронну адресу:"
-          className="input"
-          type="text"
-        />
-      </div>
+        <div className="inputForm">
+          <img src={Email_icon} alt="google" width="20" height="20" />
 
-      <div className="flex-column">
-        <label>Пароль</label>
-      </div>
-      {password.isDirty && password.isEmpty && (
-        <div style={{ color: "red" }}>Поле не може бути пустим</div>
-      )}
-      {password.isDirty && password.minLengthError && (
-        <div style={{ color: "red" }}>Замала довжина</div>
-      )}
-      {password.isDirty && password.maxLengthError && (
-        <div style={{ color: "red" }}>Задовгий пароль</div>
-      )}
-      <div className="inputForm">
-        <HttpsRoundedIcon alt="google" width="20" height="20" />
-        <input
-          onChange={password.onChange}
-          onBlur={password.onBlur}
-          value={password.value}
-          placeholder="Введіть ваш пароль:"
-          className="input"
-          type="password"
-        />
-      </div>
+          <input
+            onChange={email.onChange}
+            onBlur={email.onBlur}
+            value={email.value}
+            placeholder="Введіть свою електронну адресу:"
+            className="input"
+            type="text"
+          />
+        </div>
 
-      <div className="flex-row">
-        {/* <div>
-          <input type="radio" />
-          <label>Remember me</label>
-        </div> */}
-        <span className="span">Забули пароль?</span>
-      </div>
+        <div className="flex-column">
+          <label>Пароль</label>
+        </div>
+        <div className="flex-column-error">
+          {password.isDirty && password.isEmpty && (
+            <div style={{ color: "red" }}>Поле не може бути пустим</div>
+          )}
+          {password.isDirty && password.minLengthError && (
+            <div style={{ color: "red" }}>Замала довжина</div>
+          )}
+          {password.isDirty && password.maxLengthError && (
+            <div style={{ color: "red" }}>Задовгий пароль</div>
+          )}
+        </div>
+        <div className="inputForm">
+          <HttpsRoundedIcon alt="google" width="20" height="20" />
+          <input
+            onChange={password.onChange}
+            onBlur={password.onBlur}
+            value={password.value}
+            placeholder="Введіть ваш пароль:"
+            className="input"
+            type="password"
+          />
+        </div>
 
-      <button
-        disabled={!email.inputValid || !password.inputValid}
-        className="button-submit"
-      >
-        Увійти
-      </button>
-      <p className="p">
-        Немає облікового запису?{" "}
-        <span
-          className="span"
+        <div className="flex-row">
+          {/* <div>
+        <input type="radio" />
+        <label>Remember me</label>
+      </div> */}
+          <span className="span">Забули пароль?</span>
+        </div>
+
+        <button
+          disabled={!email.inputValid || !password.inputValid}
+          className="button-submit"
           onClick={() => {
-            navigate("/register");
+            navigate("/");
           }}
         >
-          Зареєструватися
-        </span>
-      </p>
-      <p className="p line">або</p>
+          Увійти
+        </button>
+        <p className="p">
+          Немає облікового запису?{" "}
+          <span
+            className="span"
+            onClick={() => {
+              navigate("/register");
+            }}
+          >
+            Зареєструватися
+          </span>
+        </p>
+        <p className="p line">або</p>
 
-      <div className="flex-row">
-        <button className="btn apple">
-          <img src={Apple_icon} alt="apple" width="25" height="25" />
-          Продовжити через Apple
-        </button>
-        <button className="btn google">
-          <img src={Facebook_icon} alt="facebook" width="20" height="20" />
-          Продовжити через Facebook
-        </button>
-        <button className="btn google">
-          <img src={Google_icon} alt="google" width="20" height="20" />
-          Продовжити через Google
-        </button>
+        <div className="flex-row">
+          <button className="btn apple">
+            <img src={Apple_icon} alt="apple" width="25" height="25" />
+            Продовжити через Apple
+          </button>
+          <button className="btn google">
+            <img src={Facebook_icon} alt="facebook" width="20" height="20" />
+            Продовжити через Facebook
+          </button>
+          <button className="btn google">
+            <img src={Google_icon} alt="google" width="20" height="20" />
+            Продовжити через Google
+          </button>
+        </div>
       </div>
-    </form>
+    </div>
   );
 }
 

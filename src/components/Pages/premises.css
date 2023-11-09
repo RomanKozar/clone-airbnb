@@ -1,0 +1,8 @@
+.color {
+  width: 1170px;
+  height: 528px;
+  flex-shrink: 0;
+  border-radius: 1170px;
+  background: #f9c94f;
+  filter: blur(405.5px);
+}

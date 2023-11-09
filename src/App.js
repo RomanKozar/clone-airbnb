@@ -1,21 +1,22 @@
 import "./App.css";
-import { list } from "./assets/cards-list";
-import Cards from "./components/Cards";
-import Filter from "./components/Filter";
 import Header from "./components/Header";
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/Pages/Login";
 import Register from "./components/Pages/Register";
+import Home from "./components/Home/home";
+import PremisesAirbnb from "./components/Pages/PremisesAirbnb";
+import Help from "./components/Pages/Help";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Header />}>
-          <Route index element={<Cards list={list} />} />
-          <Route index element={<Filter />} />
+          <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/premises" element={<PremisesAirbnb />} />
+          <Route path="/help" element={<Help />} />
         </Route>
       </Routes>
     </div>

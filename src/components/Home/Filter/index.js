@@ -1,5 +1,5 @@
 import "./styles.css";
-import { links } from "../../assets/images-links";
+import { links } from "../../../assets/images-links";
 
 function Filter() {
   return (

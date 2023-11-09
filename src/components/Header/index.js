@@ -31,7 +31,12 @@ function Header() {
           </div>
         </div>
         <div className="profile-container">
-          <div className="airbnb-your-home">
+          <div
+            className="airbnb-your-home"
+            onClick={() => {
+              navigate("/premises");
+            }}
+          >
             Запропонувати помешкання на Airbnb
           </div>
           <div className="global-div">

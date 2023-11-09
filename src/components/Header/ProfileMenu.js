@@ -79,10 +79,22 @@ export default function BasicMenu() {
             width: "100",
           }}
         />
-        <MenuItem className="menu-items" onClick={handleClose}>
+        <MenuItem
+          className="menu-items"
+          onClick={() => {
+            navigate("/premises");
+            handleClose();
+          }}
+        >
           Запропонувати помешкання на Airbnb
         </MenuItem>
-        <MenuItem className="menu-items" onClick={handleClose}>
+        <MenuItem
+          className="menu-items"
+          onClick={() => {
+            navigate("/help");
+            handleClose();
+          }}
+        >
           Довідковий центр
         </MenuItem>
       </Menu>
