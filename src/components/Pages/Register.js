@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./register.css";
 import Google_icon from "../../assets/img/google_icon.svg";
 import Apple_icon from "../../assets/img/apple.svg";
@@ -69,16 +70,17 @@ const useInput = (initialValue, validations) => {
 
   const onChange = (e) => {
     setValue(e.target.value);
-  };
-
-  const onBlur = () => {
     setDirty(true);
   };
+
+  // const onBlur = () => {
+  //   setDirty(true);
+  // };
 
   return {
     value,
     onChange,
-    onBlur,
+    // onBlur,
     isDirty,
     ...valid,
   };
@@ -89,10 +91,12 @@ const passwordsMatch = (password, confirmPassword) => {
 };
 
 function Register() {
+  const navigate = useNavigate();
+
   const firstName = useInput("", { isEmpty: true, minLength: 3 });
   const lastName = useInput("", { isEmpty: true, minLength: 2 });
   const email = useInput("", { isEmpty: true, minLength: 3, isEmail: true });
-  const password = useInput("", { isEmpty: true, minLength: 5, maxLength: 8 });
+  const password = useInput("", { isEmpty: true, minLength: 4, maxLength: 8 });
   const confirmPassword = useInput("", { isEmpty: true });
 
   // Використайте функцію порівняння для визначення, чи паролі співпадають
@@ -204,12 +208,17 @@ function Register() {
 
       <button
         disabled={
+          !firstName.inputValid ||
+          !lastName.inputValid ||
           !email.inputValid ||
           !password.inputValid ||
           !confirmPassword.inputValid ||
           !confirmPassword.matches
         }
         className="button-submit"
+        onClick={() => {
+          navigate("/");
+        }}
       >
         Зареєструватися
       </button>
