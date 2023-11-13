@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/slices/userSlice";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
 import "./login.css";
+
 import Google_icon from "../../assets/img/google_icon.svg";
 import Apple_icon from "../../assets/img/apple.svg";
 import Facebook_icon from "../../assets/img/facebook_icon.svg";
@@ -70,16 +75,17 @@ const useInput = (initialValue, validations) => {
 
   const onChange = (e) => {
     setValue(e.target.value);
-  };
-
-  const onBlur = () => {
     setDirty(true);
   };
+
+  // const onBlur = () => {
+  //   setDirty(true);
+  // };
 
   return {
     value,
     onChange,
-    onBlur,
+    // onBlur,
     isDirty,
     ...valid,
   };
@@ -88,8 +94,30 @@ const useInput = (initialValue, validations) => {
 function Login() {
   const navigate = useNavigate();
 
-  const email = useInput("", { isEmpty: true, minLength: 3, isEmail: true });
-  const password = useInput("", { isEmpty: true, minLength: 5, maxLength: 8 });
+  const dispatch = useDispatch();
+
+  const handleLogin = (email, password) => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then(console.log)
+      .catch(console.error);
+  };
+
+  //Перевірка через Firebase
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+
+  //Перевірка валідації
+  const emailValid = useInput("", {
+    isEmpty: true,
+    minLength: 3,
+    isEmail: true,
+  });
+  const passwordValid = useInput("", {
+    isEmpty: true,
+    minLength: 5,
+    maxLength: 8,
+  });
 
   return (
     <div>
@@ -98,13 +126,13 @@ function Login() {
           <label>Електронна пошта</label>
         </div>
         <div className="flex-column-error">
-          {email.isDirty && email.isEmpty && (
+          {emailValid.isDirty && emailValid.isEmpty && (
             <div style={{ color: "red" }}>Поле не може бути пустим</div>
           )}
-          {email.isDirty && email.minLengthError && (
+          {emailValid.isDirty && emailValid.minLengthError && (
             <div style={{ color: "red" }}>Замала довжина</div>
           )}
-          {email.isDirty && email.emailError && (
+          {emailValid.isDirty && emailValid.emailError && (
             <div style={{ color: "red" }}>Некоректний email</div>
           )}
         </div>
@@ -113,9 +141,12 @@ function Login() {
           <img src={Email_icon} alt="google" width="20" height="20" />
 
           <input
-            onChange={email.onChange}
-            onBlur={email.onBlur}
-            value={email.value}
+            onChange={(e) => {
+              emailValid.onChange(e);
+              setEmail(e.target.value);
+            }}
+            onBlur={emailValid.onBlur}
+            value={emailValid.value}
             placeholder="Введіть свою електронну адресу:"
             className="input"
             type="text"
@@ -126,22 +157,25 @@ function Login() {
           <label>Пароль</label>
         </div>
         <div className="flex-column-error">
-          {password.isDirty && password.isEmpty && (
+          {passwordValid.isDirty && passwordValid.isEmpty && (
             <div style={{ color: "red" }}>Поле не може бути пустим</div>
           )}
-          {password.isDirty && password.minLengthError && (
+          {passwordValid.isDirty && passwordValid.minLengthError && (
             <div style={{ color: "red" }}>Замала довжина</div>
           )}
-          {password.isDirty && password.maxLengthError && (
+          {passwordValid.isDirty && passwordValid.maxLengthError && (
             <div style={{ color: "red" }}>Задовгий пароль</div>
           )}
         </div>
         <div className="inputForm">
           <HttpsRoundedIcon alt="google" width="20" height="20" />
           <input
-            onChange={password.onChange}
-            onBlur={password.onBlur}
-            value={password.value}
+            onChange={(e) => {
+              passwordValid.onChange(e);
+              setPass(e.target.value);
+            }}
+            onBlur={passwordValid.onBlur}
+            value={passwordValid.value}
             placeholder="Введіть ваш пароль:"
             className="input"
             type="password"
@@ -157,10 +191,10 @@ function Login() {
         </div>
 
         <button
-          disabled={!email.inputValid || !password.inputValid}
+          disabled={!emailValid.inputValid || !passwordValid.inputValid}
           className="button-submit"
           onClick={() => {
-            navigate("/");
+            handleLogin(email, pass);
           }}
         >
           Увійти
