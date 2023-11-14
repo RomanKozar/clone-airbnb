@@ -99,8 +99,18 @@ function Login() {
   const handleLogin = (email, password) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
-      .then(console.log)
-      .catch(console.error);
+      .then(({ user }) => {
+        console.log(user);
+        dispatch(
+          setUser({
+            email: user.email,
+            id: user.uid,
+            token: user.accessToken,
+          })
+        );
+        navigate("/");
+      })
+      .catch(() => alert("Invalid user!"));
   };
 
   //Перевірка через Firebase
@@ -115,8 +125,8 @@ function Login() {
   });
   const passwordValid = useInput("", {
     isEmpty: true,
-    minLength: 5,
-    maxLength: 8,
+    minLength: 6,
+    maxLength: 10,
   });
 
   return (

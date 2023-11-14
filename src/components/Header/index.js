@@ -1,4 +1,8 @@
 import React, { Fragment } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useAuth } from "../../hooks/use-auth";
+import { removeUser } from "../store/slices/userSlice";
 
 import "./styles.css";
 import logo from "../../assets/img/logotip.png";
@@ -7,11 +11,23 @@ import LanguageIcon from "../../assets/img/Langues.svg";
 import BasicMenu from "./ProfileMenu";
 import SimpleBottomNavigation from "./BottomNav";
 import MobileSearchBar from "../MobileSearchBar";
-import { Outlet, useNavigate } from "react-router-dom";
 
 function Header() {
   const navigate = useNavigate();
-  return (
+
+  const dispatch = useDispatch();
+
+  const { isAuth, email } = useAuth();
+
+  return isAuth ? (
+    <div>
+      <h1>Welcom</h1>
+
+      <button onClick={() => dispatch(removeUser())}>
+        Log out from {email}
+      </button>
+    </div>
+  ) : (
     <Fragment>
       <div className="navbar">
         <img

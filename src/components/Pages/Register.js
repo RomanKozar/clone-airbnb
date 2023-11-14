@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/slices/userSlice";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
 import "./register.css";
+
 import Google_icon from "../../assets/img/google_icon.svg";
 import Apple_icon from "../../assets/img/apple.svg";
 import Email_icon from "../../assets/img/email.svg";
@@ -86,22 +91,53 @@ const useInput = (initialValue, validations) => {
   };
 };
 // Додайте функцію порівняння паролів
-const passwordsMatch = (password, confirmPassword) => {
-  return password === confirmPassword;
+const passwordsMatch = (passwordValid, confirmPassword) => {
+  return passwordValid === confirmPassword;
 };
 
 function Register() {
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
+  const handleRegister = (email, password) => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        console.log(user);
+        dispatch(
+          setUser({
+            email: user.email,
+            id: user.uid,
+            token: user.accessToken,
+          })
+        );
+        navigate("/");
+      })
+      .catch(console.error);
+  };
+
+  //Перевірка через Firebase
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+
   const firstName = useInput("", { isEmpty: true, minLength: 3 });
   const lastName = useInput("", { isEmpty: true, minLength: 2 });
-  const email = useInput("", { isEmpty: true, minLength: 3, isEmail: true });
-  const password = useInput("", { isEmpty: true, minLength: 4, maxLength: 8 });
+  const emailValid = useInput("", {
+    isEmpty: true,
+    minLength: 3,
+    isEmail: true,
+  });
+  const passwordValid = useInput("", {
+    isEmpty: true,
+    minLength: 6,
+    maxLength: 10,
+  });
   const confirmPassword = useInput("", { isEmpty: true });
 
   // Використайте функцію порівняння для визначення, чи паролі співпадають
   confirmPassword.matches = passwordsMatch(
-    password.value,
+    passwordValid.value,
     confirmPassword.value
   );
   return (
@@ -136,11 +172,11 @@ function Register() {
         </div>
       </div>
       <div className="flex-column-error">
-        {email.isDirty && email.isEmpty && (
+        {emailValid.isDirty && emailValid.isEmpty && (
           <div style={{ color: "red" }}>Поле не може бути пустим</div>
         )}
 
-        {email.isDirty && email.emailError && (
+        {emailValid.isDirty && emailValid.emailError && (
           <div style={{ color: "red" }}>Некоректний email</div>
         )}
       </div>
@@ -148,25 +184,28 @@ function Register() {
       <div className="inputForm">
         <img src={Email_icon} alt="google" width="20" height="20" />
         <input
-          onChange={email.onChange}
-          onBlur={email.onBlur}
-          value={email.value}
+          onChange={(e) => {
+            emailValid.onChange(e);
+            setEmail(e.target.value);
+          }}
+          onBlur={emailValid.onBlur}
+          value={emailValid.value}
           placeholder="Введіть свою електронну адресу:"
           className="input"
           type="text"
         />
         <div className="flex-column-error">
-          {email.isDirty && email.minLengthError && (
+          {emailValid.isDirty && emailValid.minLengthError && (
             <div style={{ color: "red" }}>Замала довжина</div>
           )}
         </div>
       </div>
       <div className="flex-column-error">
-        {password.isDirty && password.isEmpty && (
+        {passwordValid.isDirty && passwordValid.isEmpty && (
           <div style={{ color: "red" }}>Поле не може бути пустим</div>
         )}
 
-        {password.isDirty && password.maxLengthError && (
+        {passwordValid.isDirty && passwordValid.maxLengthError && (
           <div style={{ color: "red" }}>Задовгий пароль</div>
         )}
       </div>
@@ -174,15 +213,18 @@ function Register() {
       <div className="inputForm">
         <HttpsRoundedIcon width="20" height="20" />
         <input
-          onChange={password.onChange}
-          onBlur={password.onBlur}
-          value={password.value}
+          onChange={(e) => {
+            passwordValid.onChange(e);
+            setPass(e.target.value);
+          }}
+          onBlur={passwordValid.onBlur}
+          value={passwordValid.value}
           placeholder="Введіть ваш пароль:"
           className="input"
           type="password"
         />
         <div className="flex-column-error">
-          {password.isDirty && password.minLengthError && (
+          {passwordValid.isDirty && passwordValid.minLengthError && (
             <div style={{ color: "red" }}>Замала довжина</div>
           )}
         </div>
@@ -210,14 +252,14 @@ function Register() {
         disabled={
           !firstName.inputValid ||
           !lastName.inputValid ||
-          !email.inputValid ||
-          !password.inputValid ||
+          !emailValid.inputValid ||
+          !passwordValid.inputValid ||
           !confirmPassword.inputValid ||
           !confirmPassword.matches
         }
         className="button-submit"
         onClick={() => {
-          navigate("/");
+          handleRegister(email, pass);
         }}
       >
         Зареєструватися
