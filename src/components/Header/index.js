@@ -17,9 +17,9 @@ function Header() {
 
   const dispatch = useDispatch();
 
-  const { isAuth, email } = useAuth();
+  const { isAuth, email, id } = useAuth();
 
-  return isAuth ? (
+  return isAuth && id ? (
     <div>
       <h1>Welcom</h1>
 

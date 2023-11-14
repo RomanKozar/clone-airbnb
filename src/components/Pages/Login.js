@@ -2,12 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/slices/userSlice";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  GithubAuthProvider,
+} from "firebase/auth";
 
 import "./login.css";
 
 import Google_icon from "../../assets/img/google_icon.svg";
-import Apple_icon from "../../assets/img/apple.svg";
+import Github_icon from "../../assets/img/github_icon.svg";
 import Facebook_icon from "../../assets/img/facebook_icon.svg";
 import Email_icon from "../../assets/img/email.svg";
 import HttpsRoundedIcon from "@mui/icons-material/HttpsRounded";
@@ -96,6 +103,7 @@ function Login() {
 
   const dispatch = useDispatch();
 
+  //Вход через email і пароль
   const handleLogin = (email, password) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
@@ -111,6 +119,72 @@ function Login() {
         navigate("/");
       })
       .catch(() => alert("Invalid user!"));
+  };
+
+  // Функція для входу через Google
+  const handleGoogleLogin = async () => {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      dispatch(
+        setUser({
+          email: user.email,
+          id: user.uid,
+          token: user.accessToken,
+        })
+      );
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      alert("Помилка входу через Google");
+    }
+  };
+
+  // Функція для входу через Facebook
+  const handleFacebookLogin = async () => {
+    const auth = getAuth();
+    const provider = new FacebookAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      dispatch(
+        setUser({
+          email: user.email,
+          id: user.uid,
+          token: user.accessToken,
+        })
+      );
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      alert("Помилка входу через Facebook");
+    }
+  };
+
+  // Функція для входу через Github
+  const handleGithubLogin = async () => {
+    const auth = getAuth();
+    const provider = new GithubAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      dispatch(
+        setUser({
+          email: user.email,
+          id: user.uid,
+          token: user.accessToken,
+        })
+      );
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      alert("Помилка входу через GitHub");
+    }
   };
 
   //Перевірка через Firebase
@@ -223,15 +297,15 @@ function Login() {
         <p className="p line">або</p>
 
         <div className="flex-row">
-          <button className="btn apple">
-            <img src={Apple_icon} alt="apple" width="25" height="25" />
-            Продовжити через Apple
+          <button className="btn github" onClick={handleGithubLogin}>
+            <img src={Github_icon} alt="apple" width="20" height="20" />
+            Продовжити через GitHub
           </button>
-          <button className="btn google">
+          <button className="btn facebook" onClick={handleFacebookLogin}>
             <img src={Facebook_icon} alt="facebook" width="20" height="20" />
             Продовжити через Facebook
           </button>
-          <button className="btn google">
+          <button className="btn google" onClick={handleGoogleLogin}>
             <img src={Google_icon} alt="google" width="20" height="20" />
             Продовжити через Google
           </button>

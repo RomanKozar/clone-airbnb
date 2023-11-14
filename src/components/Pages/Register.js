@@ -2,12 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/slices/userSlice";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  GithubAuthProvider,
+} from "firebase/auth";
 
 import "./register.css";
 
 import Google_icon from "../../assets/img/google_icon.svg";
-import Apple_icon from "../../assets/img/apple.svg";
+import Github_icon from "../../assets/img/github_icon.svg";
 import Email_icon from "../../assets/img/email.svg";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
 import HttpsRoundedIcon from "@mui/icons-material/HttpsRounded";
@@ -100,6 +107,7 @@ function Register() {
 
   const dispatch = useDispatch();
 
+  //Вход через email і пароль
   const handleRegister = (email, password) => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
@@ -115,6 +123,72 @@ function Register() {
         navigate("/");
       })
       .catch(console.error);
+  };
+
+  // Функція для реєстрації через Google
+  const handleGoogleRegister = async () => {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      dispatch(
+        setUser({
+          email: user.email,
+          id: user.uid,
+          token: user.accessToken,
+        })
+      );
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      alert("Помилка реєстрації через Google");
+    }
+  };
+
+  // Функція для входу через Facebook
+  const handleFacebookRegister = async () => {
+    const auth = getAuth();
+    const provider = new FacebookAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      dispatch(
+        setUser({
+          email: user.email,
+          id: user.uid,
+          token: user.accessToken,
+        })
+      );
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      alert("Помилка входу через Facebook");
+    }
+  };
+
+  // Функція для входу через Github
+  const handleGithubRegister = async () => {
+    const auth = getAuth();
+    const provider = new GithubAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      dispatch(
+        setUser({
+          email: user.email,
+          id: user.uid,
+          token: user.accessToken,
+        })
+      );
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      alert("Помилка входу через GitHub");
+    }
   };
 
   //Перевірка через Firebase
@@ -267,15 +341,15 @@ function Register() {
       <p className="p line">або</p>
 
       <div className="flex-row">
-        <button className="btn apple">
-          <img src={Apple_icon} alt="apple" width="25" height="25" />
-          Продовжити через Apple
+        <button className="btn github" onClick={handleGithubRegister}>
+          <img src={Github_icon} alt="apple" width="20" height="20" />
+          Продовжити через GitHub
         </button>
-        <button className="btn google">
+        <button className="btn google" onClick={handleFacebookRegister}>
           <img src={Facebook_icon} alt="google" width="20" height="20" />
           Продовжити через Facebook
         </button>
-        <button className="btn google">
+        <button className="btn google" onClick={handleGoogleRegister}>
           <img src={Google_icon} alt="google" width="20" height="20" />
           Продовжити через Google
         </button>
