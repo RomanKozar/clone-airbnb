@@ -69,7 +69,7 @@
 
 .trips-categor p {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   padding: 5px 10px;
   margin: 2px;
   background-color: #ccc;
