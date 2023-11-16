@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/slices/userSlice";
+import app from "../../firebase";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -109,7 +111,7 @@ function Register() {
 
   //Вход через email і пароль
   const handleRegister = (email, password) => {
-    const auth = getAuth();
+    const auth = getAuth(app);
     createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         console.log(user);
@@ -127,7 +129,7 @@ function Register() {
 
   // Функція для реєстрації через Google
   const handleGoogleRegister = async () => {
-    const auth = getAuth();
+    const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
     try {
@@ -149,7 +151,7 @@ function Register() {
 
   // Функція для входу через Facebook
   const handleFacebookRegister = async () => {
-    const auth = getAuth();
+    const auth = getAuth(app);
     const provider = new FacebookAuthProvider();
 
     try {
@@ -165,13 +167,13 @@ function Register() {
       navigate("/");
     } catch (error) {
       console.error(error);
-      alert("Помилка входу через Facebook");
+      alert("Помилка реєстрації через Facebook");
     }
   };
 
   // Функція для входу через Github
   const handleGithubRegister = async () => {
-    const auth = getAuth();
+    const auth = getAuth(app);
     const provider = new GithubAuthProvider();
 
     try {
@@ -187,7 +189,7 @@ function Register() {
       navigate("/");
     } catch (error) {
       console.error(error);
-      alert("Помилка входу через GitHub");
+      alert("Помилка реєстрації через GitHub");
     }
   };
 
