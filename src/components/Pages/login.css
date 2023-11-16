@@ -109,6 +109,7 @@
 
 .button-submit:disabled {
   background-color: var(--theme);
+  cursor: not-allowed;
 }
 
 .p {

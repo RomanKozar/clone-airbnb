@@ -1,0 +1,92 @@
+.footer-div {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: left;
+  gap: 8rem;
+  padding: 3px 32px;
+  background-color: #f0f0f0;
+  color: #666;
+  border-top: 2px solid rgba(0, 0, 0, 0.35);
+}
+
+@media (min-width: 800px) {
+  .footer-div {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.name-div {
+  font-size: 0.75rem;
+  color: #333;
+}
+
+.name-h {
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.name-p:hover,
+.language-icon-footer:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #4169e1;
+  transform: translateY(-2px);
+}
+
+.name-p:active,
+.language-icon-footer:active {
+  transform: translateY(0);
+}
+
+.language-icon-footer {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  margin-right: 5px;
+  margin-left: 3px;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.1px 20px;
+  background-color: #f0f0f0;
+  color: #666;
+  border-top: 2px solid rgba(0, 0, 0, 0.35);
+}
+
+.trips-categor {
+  display: flex;
+  gap: 5px;
+  margin: 5px;
+  padding-left: 20px;
+}
+
+.trips-categor p {
+  display: flex;
+  justify-content: start;
+  padding: 5px 10px;
+  margin: 2px;
+  background-color: #ccc;
+  color: #333;
+  border: 1px solid #999;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.trips-categor p:hover {
+  background-color: #666;
+  color: #fff;
+  border-color: #444;
+}
+
+.trips-div {
+  text-align: left;
+  padding-left: 35px;
+}
