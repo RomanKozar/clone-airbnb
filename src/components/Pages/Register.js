@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/slices/userSlice";
+import { getDatabase, ref, set } from "firebase/database";
 import app from "../../firebase";
 
 import {
@@ -104,27 +105,62 @@ const passwordsMatch = (passwordValid, confirmPassword) => {
   return passwordValid === confirmPassword;
 };
 
+//Перевірка чи такий email вже існує
+// async function checkIfEmailExists(email) {
+//   const auth = getAuth(app);
+//   try {
+//     const methods = await fetchSignInMethodsForEmail(auth, email);
+//     return methods && methods.length > 0;
+//   } catch (error) {
+//     console.error("Error checking email:", error);
+//     return false;
+//   }
+// }
+
 function Register() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
   //Вход через email і пароль
-  const handleRegister = (email, password) => {
-    const auth = getAuth(app);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        console.log(user);
-        dispatch(
-          setUser({
-            email: user.email,
-            id: user.uid,
-            token: user.accessToken,
-          })
-        );
-        navigate("/");
-      })
-      .catch(console.error);
+  const handleRegister = async (email, password, firstName, lastName) => {
+    try {
+      const auth = getAuth(app);
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const db = getDatabase(app);
+      const usersRef = ref(db, "users/" + user.uid);
+
+      await set(usersRef, {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        id: user.uid,
+        token: user.accessToken,
+      });
+
+      dispatch(
+        setUser({
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          id: user.uid,
+          token: user.accessToken,
+        })
+      );
+      navigate("/");
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        alert("Цей email вже зареєстрований");
+        // Тут ви можете відобразити повідомлення користувачеві про те, що електронний лист вже використовується
+      } else {
+        console.error(error);
+        alert("Помилка реєстрації");
+      }
+    }
   };
 
   // Функція для реєстрації через Google
@@ -135,14 +171,30 @@ function Register() {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      dispatch(
-        setUser({
-          email: user.email,
-          id: user.uid,
-          token: user.accessToken,
+
+      const db = getDatabase(app);
+      const usersRef = ref(db, "users/" + user.uid);
+
+      set(usersRef, {
+        firstName: "Реєстрація через Google",
+        lastName: "",
+        email: user.email,
+        id: user.uid,
+        token: user.accessToken,
+      })
+        .then(() => {
+          dispatch(
+            setUser({
+              email: user.email,
+              id: user.uid,
+              token: user.accessToken,
+            })
+          );
+          navigate("/");
         })
-      );
-      navigate("/");
+        .catch((error) => {
+          console.error("Помилка оновлення даних користувача: ", error);
+        });
     } catch (error) {
       console.error(error);
       alert("Помилка реєстрації через Google");
@@ -157,14 +209,30 @@ function Register() {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      dispatch(
-        setUser({
-          email: user.email,
-          id: user.uid,
-          token: user.accessToken,
+
+      const db = getDatabase(app);
+      const usersRef = ref(db, "users/" + user.uid);
+
+      set(usersRef, {
+        firstName: "Реєстрація через Facebook",
+        lastName: "",
+        email: user.email,
+        id: user.uid,
+        token: user.accessToken,
+      })
+        .then(() => {
+          dispatch(
+            setUser({
+              email: user.email,
+              id: user.uid,
+              token: user.accessToken,
+            })
+          );
+          navigate("/");
         })
-      );
-      navigate("/");
+        .catch((error) => {
+          console.error("Помилка оновлення даних користувача: ", error);
+        });
     } catch (error) {
       console.error(error);
       alert("Помилка реєстрації через Facebook");
@@ -179,14 +247,30 @@ function Register() {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      dispatch(
-        setUser({
-          email: user.email,
-          id: user.uid,
-          token: user.accessToken,
+
+      const db = getDatabase(app);
+      const usersRef = ref(db, "users/" + user.uid);
+
+      set(usersRef, {
+        firstName: "Реєстрація через GitHub",
+        lastName: "",
+        email: user.email,
+        id: user.uid,
+        token: user.accessToken,
+      })
+        .then(() => {
+          dispatch(
+            setUser({
+              email: user.email,
+              id: user.uid,
+              token: user.accessToken,
+            })
+          );
+          navigate("/");
         })
-      );
-      navigate("/");
+        .catch((error) => {
+          console.error("Помилка оновлення даних користувача: ", error);
+        });
     } catch (error) {
       console.error(error);
       alert("Помилка реєстрації через GitHub");
@@ -194,11 +278,13 @@ function Register() {
   };
 
   //Перевірка через Firebase
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
-  const firstName = useInput("", { isEmpty: true, minLength: 3 });
-  const lastName = useInput("", { isEmpty: true, minLength: 2 });
+  const firstNameValid = useInput("", { isEmpty: true, minLength: 3 });
+  const lastNameValid = useInput("", { isEmpty: true, minLength: 2 });
   const emailValid = useInput("", {
     isEmpty: true,
     minLength: 3,
@@ -224,10 +310,14 @@ function Register() {
           placeholder="Введіть своє ім'я:"
           className="input"
           type="text"
-          {...firstName}
+          value={firstNameValid.value}
+          onChange={(e) => {
+            firstNameValid.onChange(e);
+            setLastName(e.target.value);
+          }}
         />
         <div className="flex-column-error">
-          {firstName.isDirty && firstName.minLengthError && (
+          {firstNameValid.isDirty && firstNameValid.minLengthError && (
             <div style={{ color: "red" }}>Замала довжина</div>
           )}
         </div>
@@ -239,10 +329,14 @@ function Register() {
           placeholder="Введіть своє прізвище:"
           className="input"
           type="text"
-          {...lastName}
+          value={lastNameValid.value}
+          onChange={(e) => {
+            lastNameValid.onChange(e);
+            setFirstName(e.target.value);
+          }}
         />
         <div className="flex-column-error">
-          {lastName.isDirty && lastName.minLengthError && (
+          {lastNameValid.isDirty && lastNameValid.minLengthError && (
             <div style={{ color: "red" }}>Замала довжина</div>
           )}
         </div>
@@ -326,8 +420,8 @@ function Register() {
 
       <button
         disabled={
-          !firstName.inputValid ||
-          !lastName.inputValid ||
+          !firstNameValid.inputValid ||
+          !lastNameValid.inputValid ||
           !emailValid.inputValid ||
           !passwordValid.inputValid ||
           !confirmPassword.inputValid ||
@@ -335,7 +429,7 @@ function Register() {
         }
         className="button-submit"
         onClick={() => {
-          handleRegister(email, pass);
+          handleRegister(email, pass, firstName, lastName);
         }}
       >
         Зареєструватися
