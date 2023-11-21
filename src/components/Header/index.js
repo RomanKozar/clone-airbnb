@@ -6,11 +6,12 @@ import { removeUser } from "../store/slices/userSlice";
 
 import "./styles.css";
 import logo from "../../assets/img/logotip.png";
-import SearchRoundedIcon from "../../assets/img/search.svg";
+
 import LanguageIcon from "../../assets/img/Langues.svg";
 import BasicMenu from "./ProfileMenu";
 import SimpleBottomNavigation from "./BottomNav";
 import MobileSearchBar from "../MobileSearchBar";
+import Search from "./Search";
 
 function Header() {
   const navigate = useNavigate();
@@ -38,14 +39,7 @@ function Header() {
             navigate("/");
           }}
         />
-        <div className="search-bar">
-          <div className="search-bar-text">Будь-куди</div>
-          <div className="search-bar-text">Будь-який тиждень</div>
-          <div className="search-bar-text2">Додайте гостей</div>
-          <div className="search-icon-div">
-            <img src={SearchRoundedIcon} alt="icon" className="search-icon" />
-          </div>
-        </div>
+        <Search />
         <div className="profile-container">
           <div
             className="airbnb-your-home"

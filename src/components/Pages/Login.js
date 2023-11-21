@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/slices/userSlice";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 import {
   getAuth,
@@ -105,19 +106,29 @@ function Login() {
   const dispatch = useDispatch();
 
   //Вход через email і пароль
-  const handleLogin = (email, password) => {
+  const handleLogin = (email, password, dispatch, navigate) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         console.log(user);
-        dispatch(
-          setUser({
-            email: user.email,
-            id: user.uid,
-            token: user.accessToken,
-          })
-        );
-        navigate("/");
+
+        const db = getDatabase();
+        const dataRef = ref(db, "users/" + user.uid);
+
+        onValue(dataRef, (snapshot) => {
+          const data = snapshot.val();
+          console.log("Отримані дані з бази даних:", data);
+
+          dispatch(
+            setUser({
+              email: user.email,
+              id: user.uid,
+              token: user.accessToken,
+            })
+          );
+
+          navigate("/");
+        });
       })
       .catch(() => alert("Invalid user!"));
   };
@@ -137,6 +148,15 @@ function Login() {
           token: user.accessToken,
         })
       );
+
+      const db = getDatabase();
+      const userRef = ref(db, `users/${user.uid}`);
+
+      onValue(userRef, (snapshot) => {
+        const userData = snapshot.val();
+        console.log("Отримані дані з бази даних:", userData);
+      });
+
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -159,6 +179,15 @@ function Login() {
           token: user.accessToken,
         })
       );
+
+      const db = getDatabase();
+      const userRef = ref(db, `users/${user.uid}`);
+
+      onValue(userRef, (snapshot) => {
+        const userData = snapshot.val();
+        console.log("Отримані дані з бази даних:", userData);
+      });
+
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -181,6 +210,15 @@ function Login() {
           token: user.accessToken,
         })
       );
+
+      const db = getDatabase();
+      const userRef = ref(db, `users/${user.uid}`);
+
+      onValue(userRef, (snapshot) => {
+        const userData = snapshot.val();
+        console.log("Отримані дані з бази даних:", userData);
+      });
+
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -279,7 +317,7 @@ function Login() {
           disabled={!emailValid.inputValid || !passwordValid.inputValid}
           className="button-submit"
           onClick={() => {
-            handleLogin(email, pass);
+            handleLogin(email, pass, dispatch, navigate);
           }}
         >
           Увійти
