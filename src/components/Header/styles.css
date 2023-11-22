@@ -14,6 +14,63 @@
   height: 3rem;
 }
 
+/* .date-range {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+} */
+
+.data-range-but {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 500;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border: 2px solid var(--theme);
+  border-radius: 2rem;
+  box-shadow: 3px -2px 6px 0px rgba(0, 0, 0, 0.25) inset;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  font-size: 0.9rem;
+  margin-left: 8rem;
+}
+
+.data-range-but:hover {
+  background-color: var(--grey);
+  box-shadow: 5px 0px 8px 0px rgba(0, 0, 0, 0.35) inset;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.data-range-div {
+  display: flex;
+  justify-content: center;
+  margin-right: 4rem;
+  margin-bottom: 6px;
+}
+
+.date-number {
+  padding-right: 20rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.date-number-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.date-number-input {
+  padding-left: 0.5rem;
+  font-size: 1.2rem;
+  outline: none;
+  color: #4b5563;
+  width: 35px;
+}
+
 .search-icon {
   width: 22.5px;
   height: 26px;

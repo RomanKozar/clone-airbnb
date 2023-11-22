@@ -5,7 +5,6 @@ import "./styles.css";
 function Search() {
   const [searchInput, setSearchInput] = useState("");
 
-
   return (
     <div className="search-bar">
       <div className="search-text">
@@ -20,6 +19,7 @@ function Search() {
       <div className="search-icon-div">
         <img src={SearchRoundedIcon} alt="icon" className="search-icon" />
       </div>
+      
     </div>
   );
 }
