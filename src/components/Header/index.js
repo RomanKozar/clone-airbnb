@@ -34,6 +34,17 @@ function Header() {
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
   };
+
+  const resetInput = () => {
+    setSearchInput("");
+  };
+
+  const search = () => {
+    navigate(
+      `/search?location=${searchInput}&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&noOfGuests=${noOfGuests}`
+    );
+  };
+
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
@@ -108,7 +119,7 @@ function Header() {
           <div className="date-number-div">
             <h2 className="date-number">Number of Guests</h2>
             <GroupAddRoundedIcon />
-            
+
             <input
               value={noOfGuests}
               onChange={(e) => setNoOfGuests(e.target.value)}
@@ -119,8 +130,12 @@ function Header() {
           </div>
           <span className="underline"></span>
           <div className="data-range-div">
-            <div className="data-range-but">Cancel</div>
-            <div className="data-range-but">Search</div>
+            <div onClick={resetInput} className="data-range-but">
+              Cancel
+            </div>
+            <div onClick={search} className="data-range-but">
+              Search
+            </div>
           </div>
         </div>
       )}

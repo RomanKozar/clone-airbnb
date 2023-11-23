@@ -6,6 +6,7 @@ import Register from "./components/Pages/Register";
 import Home from "./components/Home/home";
 import PremisesAirbnb from "./components/Pages/PremisesAirbnb";
 import Help from "./components/Pages/Help";
+import Search from "components/Pages/search";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/premises" element={<PremisesAirbnb />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/help" element={<Help />} />
         </Route>
       </Routes>
