@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../hooks/use-auth";
 import { removeUser } from "../store/slices/userSlice";
@@ -16,14 +16,31 @@ import SimpleBottomNavigation from "./BottomNav";
 import MobileSearchBar from "../MobileSearchBar";
 import SearchRoundedIcon from "../../assets/img/search.svg";
 import GroupAddRoundedIcon from "@mui/icons-material/GroupAddRounded";
+import { useSearch } from './SearchContext';
 
+// import { useRouter } from "next/dist/client/router"
+
+// const router = useRouter();
+// console.log(router.query);
+
+// const search = () => {
+//   router.push({
+//     pathname: "/search",
+//     query: {
+//       location: searchInput,
+//       startDate: startDate.toISOString(),
+//       endDate: endDate.toISOString(),
+//       noOfGuests,
+//     }
+//   })
+// }
 function Header() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
   const { isAuth, email, id } = useAuth();
-
+  
   //Реалізація пошуку
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
@@ -44,7 +61,7 @@ function Header() {
       `/search?location=${searchInput}&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&noOfGuests=${noOfGuests}`
     );
   };
-
+  
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,

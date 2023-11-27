@@ -7,13 +7,16 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "components/store";
 import "../src/firebase.js";
+import { SearchProvider } from "./components/Header/SearchContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <SearchProvider>
+          <App />
+        </SearchProvider>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>
