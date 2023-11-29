@@ -81,8 +81,7 @@
 .search-bar {
   display: flex;
   align-items: center;
-  margin-left: 15rem;
-  gap: 5rem;
+
   padding: 0.3rem 1rem;
   border: 2px solid var(--theme);
   border-radius: 2rem;
@@ -102,6 +101,7 @@
   border: none;
   border-radius: 999px;
   padding: 0.5rem 1rem;
+  width: 400px;
 }
 
 .search-text input {

@@ -20,6 +20,7 @@ import Github_icon from "../../assets/img/github_icon.svg";
 import Facebook_icon from "../../assets/img/facebook_icon.svg";
 import Email_icon from "../../assets/img/email.svg";
 import HttpsRoundedIcon from "@mui/icons-material/HttpsRounded";
+import Header from "../Header/Header";
 
 const useValidation = (value, validations) => {
   const [isEmpty, setEmpty] = useState(true);
@@ -244,6 +245,7 @@ function Login() {
 
   return (
     <div>
+      <Header />
       <div className="form">
         <div className="flex-column">
           <label>Електронна пошта</label>

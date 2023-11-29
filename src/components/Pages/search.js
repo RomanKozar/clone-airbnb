@@ -1,18 +1,35 @@
 import React from "react";
 import "./search.css";
 import Footer from "../Home/Footer";
-import { useSearch } from "../Header/SearchContext"
+import { useSearch } from "../Header/SearchContext";
+import { useParams } from "react-router-dom";
+import { format } from "date-fns";
+import Header from "../Header/Header";
+import CardsSearch from "../Home/Cards/indexSearch";
+import { list } from "../../assets/cards-list";
 
 function Search() {
-  const { searchInput, startDate, endDate, noOfGuests } = useSearch();
+  const { startDate, endDate, noOfGuests } = useSearch();
+  const { searchInput } = useParams();
+
+  const formattedStartDate = format(new Date(startDate), "dd MMMM yy");
+  const formattedEndDate = format(new Date(endDate), "dd MMMM yy");
+  const range = `${formattedStartDate} - ${formattedEndDate}`;
 
   return (
     <div>
-      <main className="flex">
-        <section className="flex-grow pt-14 px-6">
+      <Header
+        placeholder={`${searchInput} | ${range} | ${noOfGuests} guests`}
+      />
+      <div className="searchPage">
+        <div className="searchPage__info">
           {/* <div class="bg-red-500 text-white p-4">Hello, Tailwind!</div> */}
-          <p className="text-xs">300 + Stays for 5 number of guests</p>
-          <h1 className="text-3xl font-semibold mt-2 mb-6">Stays in {searchInput}</h1>
+          <p className="text-xs">
+            300 + Stays -{range}- for {noOfGuests} guests
+          </p>
+          <h1 className="text-3xl font-semibold mt-2 mb-6">
+            Stays in {searchInput}
+          </h1>
 
           <div
             className="hidden lg:inline-flex mb-5 space-x-3
@@ -54,8 +71,11 @@ function Search() {
               More filters
             </p>
           </div>
-        </section>
-      </main>
+          <div>
+            <CardsSearch list={list} />
+          </div>
+        </div>
+      </div>
 
       <Footer />
     </div>

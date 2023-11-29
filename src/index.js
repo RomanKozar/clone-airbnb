@@ -6,18 +6,18 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "components/store";
-import "../src/firebase.js";
 import { SearchProvider } from "./components/Header/SearchContext";
+import "../src/firebase.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
-        <SearchProvider>
+      <SearchProvider>
+        <Provider store={store}>
           <App />
-        </SearchProvider>
-      </Provider>
+        </Provider>
+      </SearchProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

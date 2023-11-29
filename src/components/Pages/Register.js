@@ -24,6 +24,7 @@ import HttpsRoundedIcon from "@mui/icons-material/HttpsRounded";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import Facebook_icon from "../../assets/img/facebook_icon.svg";
+import Header from "../Header/Header";
 
 const useValidation = (value, validations) => {
   const [isEmpty, setEmpty] = useState(true);
@@ -303,154 +304,159 @@ function Register() {
     confirmPassword.value
   );
   return (
-    <div className="form">
-      <div className="inputForm">
-        <AccountCircleOutlinedIcon alt="google" width="20" height="20" />
-        <input
-          placeholder="Введіть своє ім'я:"
-          className="input"
-          type="text"
-          value={firstNameValid.value}
-          onChange={(e) => {
-            firstNameValid.onChange(e);
-            setLastName(e.target.value);
+    <>
+      <Header />
+      <div className="form">
+        <div className="inputForm">
+          <AccountCircleOutlinedIcon alt="google" width="20" height="20" />
+          <input
+            placeholder="Введіть своє ім'я:"
+            className="input"
+            type="text"
+            value={firstNameValid.value}
+            onChange={(e) => {
+              firstNameValid.onChange(e);
+              setLastName(e.target.value);
+            }}
+          />
+          <div className="flex-column-error">
+            {firstNameValid.isDirty && firstNameValid.minLengthError && (
+              <div style={{ color: "red" }}>Замала довжина</div>
+            )}
+          </div>
+        </div>
+
+        <div className="inputForm">
+          <AccountCircleRoundedIcon alt="google" width="20" height="20" />
+          <input
+            placeholder="Введіть своє прізвище:"
+            className="input"
+            type="text"
+            value={lastNameValid.value}
+            onChange={(e) => {
+              lastNameValid.onChange(e);
+              setFirstName(e.target.value);
+            }}
+          />
+          <div className="flex-column-error">
+            {lastNameValid.isDirty && lastNameValid.minLengthError && (
+              <div style={{ color: "red" }}>Замала довжина</div>
+            )}
+          </div>
+        </div>
+        <div className="flex-column-error">
+          {emailValid.isDirty && emailValid.isEmpty && (
+            <div style={{ color: "red" }}>Поле не може бути пустим</div>
+          )}
+
+          {emailValid.isDirty && emailValid.emailError && (
+            <div style={{ color: "red" }}>Некоректний email</div>
+          )}
+        </div>
+
+        <div className="inputForm">
+          <img src={Email_icon} alt="google" width="20" height="20" />
+          <input
+            onChange={(e) => {
+              emailValid.onChange(e);
+              setEmail(e.target.value);
+            }}
+            onBlur={emailValid.onBlur}
+            value={emailValid.value}
+            placeholder="Введіть свою електронну адресу:"
+            className="input"
+            type="text"
+          />
+          <div className="flex-column-error">
+            {emailValid.isDirty && emailValid.minLengthError && (
+              <div style={{ color: "red" }}>Замала довжина</div>
+            )}
+          </div>
+        </div>
+        <div className="flex-column-error">
+          {passwordValid.isDirty && passwordValid.isEmpty && (
+            <div style={{ color: "red" }}>Поле не може бути пустим</div>
+          )}
+
+          {passwordValid.isDirty && passwordValid.maxLengthError && (
+            <div style={{ color: "red" }}>Задовгий пароль</div>
+          )}
+        </div>
+
+        <div className="inputForm">
+          <HttpsRoundedIcon width="20" height="20" />
+          <input
+            onChange={(e) => {
+              passwordValid.onChange(e);
+              setPass(e.target.value);
+            }}
+            onBlur={passwordValid.onBlur}
+            value={passwordValid.value}
+            placeholder="Введіть ваш пароль:"
+            className="input"
+            type="password"
+          />
+          <div className="flex-column-error">
+            {passwordValid.isDirty && passwordValid.minLengthError && (
+              <div style={{ color: "red" }}>Замала довжина</div>
+            )}
+          </div>
+        </div>
+        <div
+          className={`inputForm ${
+            confirmPassword.isDirty && !confirmPassword.matches
+              ? "hasError"
+              : ""
+          }`}
+        >
+          <LockOpenRoundedIcon width="20" height="20" />
+          <input
+            placeholder="Повторіть ваш пароль:"
+            className="input"
+            type="password"
+            {...confirmPassword}
+          />
+          <div className="flex-column-error">
+            {confirmPassword.isDirty && !confirmPassword.matches && (
+              <div style={{ color: "red" }}>Паролі не співпадають</div>
+            )}
+          </div>
+        </div>
+
+        <button
+          disabled={
+            !firstNameValid.inputValid ||
+            !lastNameValid.inputValid ||
+            !emailValid.inputValid ||
+            !passwordValid.inputValid ||
+            !confirmPassword.inputValid ||
+            !confirmPassword.matches
+          }
+          className="button-submit"
+          onClick={() => {
+            handleRegister(email, pass, firstName, lastName);
           }}
-        />
-        <div className="flex-column-error">
-          {firstNameValid.isDirty && firstNameValid.minLengthError && (
-            <div style={{ color: "red" }}>Замала довжина</div>
-          )}
-        </div>
-      </div>
-
-      <div className="inputForm">
-        <AccountCircleRoundedIcon alt="google" width="20" height="20" />
-        <input
-          placeholder="Введіть своє прізвище:"
-          className="input"
-          type="text"
-          value={lastNameValid.value}
-          onChange={(e) => {
-            lastNameValid.onChange(e);
-            setFirstName(e.target.value);
-          }}
-        />
-        <div className="flex-column-error">
-          {lastNameValid.isDirty && lastNameValid.minLengthError && (
-            <div style={{ color: "red" }}>Замала довжина</div>
-          )}
-        </div>
-      </div>
-      <div className="flex-column-error">
-        {emailValid.isDirty && emailValid.isEmpty && (
-          <div style={{ color: "red" }}>Поле не може бути пустим</div>
-        )}
-
-        {emailValid.isDirty && emailValid.emailError && (
-          <div style={{ color: "red" }}>Некоректний email</div>
-        )}
-      </div>
-
-      <div className="inputForm">
-        <img src={Email_icon} alt="google" width="20" height="20" />
-        <input
-          onChange={(e) => {
-            emailValid.onChange(e);
-            setEmail(e.target.value);
-          }}
-          onBlur={emailValid.onBlur}
-          value={emailValid.value}
-          placeholder="Введіть свою електронну адресу:"
-          className="input"
-          type="text"
-        />
-        <div className="flex-column-error">
-          {emailValid.isDirty && emailValid.minLengthError && (
-            <div style={{ color: "red" }}>Замала довжина</div>
-          )}
-        </div>
-      </div>
-      <div className="flex-column-error">
-        {passwordValid.isDirty && passwordValid.isEmpty && (
-          <div style={{ color: "red" }}>Поле не може бути пустим</div>
-        )}
-
-        {passwordValid.isDirty && passwordValid.maxLengthError && (
-          <div style={{ color: "red" }}>Задовгий пароль</div>
-        )}
-      </div>
-
-      <div className="inputForm">
-        <HttpsRoundedIcon width="20" height="20" />
-        <input
-          onChange={(e) => {
-            passwordValid.onChange(e);
-            setPass(e.target.value);
-          }}
-          onBlur={passwordValid.onBlur}
-          value={passwordValid.value}
-          placeholder="Введіть ваш пароль:"
-          className="input"
-          type="password"
-        />
-        <div className="flex-column-error">
-          {passwordValid.isDirty && passwordValid.minLengthError && (
-            <div style={{ color: "red" }}>Замала довжина</div>
-          )}
-        </div>
-      </div>
-      <div
-        className={`inputForm ${
-          confirmPassword.isDirty && !confirmPassword.matches ? "hasError" : ""
-        }`}
-      >
-        <LockOpenRoundedIcon width="20" height="20" />
-        <input
-          placeholder="Повторіть ваш пароль:"
-          className="input"
-          type="password"
-          {...confirmPassword}
-        />
-        <div className="flex-column-error">
-          {confirmPassword.isDirty && !confirmPassword.matches && (
-            <div style={{ color: "red" }}>Паролі не співпадають</div>
-          )}
-        </div>
-      </div>
-
-      <button
-        disabled={
-          !firstNameValid.inputValid ||
-          !lastNameValid.inputValid ||
-          !emailValid.inputValid ||
-          !passwordValid.inputValid ||
-          !confirmPassword.inputValid ||
-          !confirmPassword.matches
-        }
-        className="button-submit"
-        onClick={() => {
-          handleRegister(email, pass, firstName, lastName);
-        }}
-      >
-        Зареєструватися
-      </button>
-      <p className="p line">або</p>
-
-      <div className="flex-row">
-        <button className="btn github" onClick={handleGithubRegister}>
-          <img src={Github_icon} alt="apple" width="20" height="20" />
-          Продовжити через GitHub
+        >
+          Зареєструватися
         </button>
-        <button className="btn google" onClick={handleFacebookRegister}>
-          <img src={Facebook_icon} alt="google" width="20" height="20" />
-          Продовжити через Facebook
-        </button>
-        <button className="btn google" onClick={handleGoogleRegister}>
-          <img src={Google_icon} alt="google" width="20" height="20" />
-          Продовжити через Google
-        </button>
+        <p className="p line">або</p>
+
+        <div className="flex-row">
+          <button className="btn github" onClick={handleGithubRegister}>
+            <img src={Github_icon} alt="apple" width="20" height="20" />
+            Продовжити через GitHub
+          </button>
+          <button className="btn google" onClick={handleFacebookRegister}>
+            <img src={Facebook_icon} alt="google" width="20" height="20" />
+            Продовжити через Facebook
+          </button>
+          <button className="btn google" onClick={handleGoogleRegister}>
+            <img src={Google_icon} alt="google" width="20" height="20" />
+            Продовжити через Google
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
