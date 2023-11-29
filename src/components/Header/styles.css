@@ -97,7 +97,7 @@
 
 .search-text {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   border: none;
   border-radius: 999px;
   padding: 0.5rem 1rem;

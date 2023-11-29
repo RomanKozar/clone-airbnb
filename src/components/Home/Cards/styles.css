@@ -77,7 +77,7 @@
 .searchResult {
   display: flex;
   position: relative;
-  justify-content: start;
+  justify-content: flex-start;
   margin: 20px;
   padding: 20px;
   border-bottom: 1px solid lightgray;
