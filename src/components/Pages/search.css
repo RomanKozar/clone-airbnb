@@ -1,10 +1,8 @@
-/* @import "tailwindcss/base";
+@import "tailwindcss/base";
 @import "tailwindcss/components";
-@import "tailwindcss/utilities"; */
+@import "tailwindcss/utilities";
 
-searchPage
-
-.searchPage__info {
+/* .searchPage__info {
   padding: 20px;
 }
 
@@ -21,4 +19,4 @@ searchPage
   border-radius: 30px;
   text-transform: inherit;
   margin: 5px;
-}
+} */

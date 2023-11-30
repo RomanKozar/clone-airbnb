@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 import Header from "../Header/Header";
 import CardsSearch from "../Home/Cards/indexSearch";
+import Map from "../Map/Map";
 import { list } from "../../assets/cards-list";
 
 function Search() {
@@ -74,6 +75,9 @@ function Search() {
           <div>
             <CardsSearch list={list} />
           </div>
+        </div>
+        <div>
+          <Map />
         </div>
       </div>
 
