@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { GoogleMap } from "@react-google-maps/api";
-import "./map.css";
 import { defaultTheme } from "./Theme";
+import "../Map/map.css";
 
 const containerStyle = {
   width: "100%",
