@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../hooks/use-auth";
@@ -19,6 +20,8 @@ function Basis() {
 
   const { isAuth, email, id } = useAuth();
 
+  const navigate = useNavigate();
+
   return isAuth && id ? (
     <div>
       <h1>Welcom</h1>
@@ -32,6 +35,13 @@ function Basis() {
       <Header />
       <Filter />
       <Cards list={list} />
+      <button
+        onClick={() => {
+          navigate("/showmap");
+        }}
+      >
+        Показати карту
+      </button>
       <Footer />
     </>
   );

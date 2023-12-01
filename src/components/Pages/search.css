@@ -1,8 +1,8 @@
-@import "tailwindcss/base";
+/* @import "tailwindcss/base";
 @import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss/utilities"; */
 
-/* .searchPage__info {
+.searchPage__info {
   padding: 20px;
 }
 
@@ -19,4 +19,14 @@
   border-radius: 30px;
   text-transform: inherit;
   margin: 5px;
-} */
+}
+
+.addressSearchContainer {
+  max-width: 500px;
+  width: 100%;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}

@@ -6,8 +6,8 @@ import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 import Header from "../Header/Header";
 import CardsSearch from "../Home/Cards/indexSearch";
-import Map from "../Map/Map";
 import { list } from "../../assets/cards-list";
+
 
 function Search() {
   const { startDate, endDate, noOfGuests } = useSearch();
@@ -16,6 +16,8 @@ function Search() {
   const formattedStartDate = format(new Date(startDate), "dd MMMM yy");
   const formattedEndDate = format(new Date(endDate), "dd MMMM yy");
   const range = `${formattedStartDate} - ${formattedEndDate}`;
+
+  
 
   return (
     <div>
@@ -76,9 +78,7 @@ function Search() {
             <CardsSearch list={list} />
           </div>
         </div>
-        <div>
-          <Map />
-        </div>
+        
       </div>
 
       <Footer />
