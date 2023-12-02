@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
-import { GoogleMap } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
+import { CurrentLocationMarker } from "../CurrentLocationMarker/CurrentLocationMarker";
 import { defaultTheme } from "./Theme";
 import "./styles.css";
 
@@ -44,8 +45,7 @@ function Map({ center }) {
         onUnmount={onUnmount}
         options={defaultOptions}
       >
-        {/* Child components, such as markers, info windows, etc. */}
-        <></>
+        <CurrentLocationMarker position={center} />
       </GoogleMap>
     </div>
   );
