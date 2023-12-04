@@ -21,13 +21,4 @@
   margin: 5px;
 }
 
-.addressSearchContainer {
-  max-width: 500px;
-  width: 100%;
-  position: fixed;
-  top: 85px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  display: flex;
-}
+

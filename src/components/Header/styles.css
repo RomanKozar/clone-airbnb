@@ -300,3 +300,14 @@
   font-size: 1rem;
   cursor: pointer;
 }
+
+.addressSearchContainer {
+  display: flex;
+  max-width: 500px;
+  width: 100%;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  
+}

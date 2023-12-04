@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
-import { GoogleMap, Marker } from "@react-google-maps/api";
+import React, { useCallback, useRef } from "react";
+import { GoogleMap } from "@react-google-maps/api";
 import { CurrentLocationMarker } from "../CurrentLocationMarker/CurrentLocationMarker";
 import { defaultTheme } from "./Theme";
+import { Marker } from "../Marker";
 import "./styles.css";
 
 const containerStyle = {
@@ -19,12 +20,17 @@ const defaultOptions = {
   clickableIcons: false,
   keyboardShortcuts: false,
   scrollwheel: true,
-  disableDoubleClickZoom: false,
+  disableDoubleClickZoom: true,
   fullscreenControl: false,
   styles: defaultTheme,
 };
 
-function Map({ center }) {
+export const MODES = {
+  MOVE: 0,
+  SET_MARKER: 1,
+};
+
+function Map({ center, mode, markers, onMarkerAdd }) {
   const mapRef = useRef(undefined);
 
   const onLoad = React.useCallback(function callback(map) {
@@ -35,17 +41,33 @@ function Map({ center }) {
     mapRef.current = undefined;
   }, []);
 
+  const onClick = useCallback(
+    (loc) => {
+      if (mode === MODES.SET_MARKER) {
+        const lat = loc.latLng.lat();
+        const lng = loc.latLng.lng();
+        console.log({ lat, lng });
+        onMarkerAdd({ lat, lng });
+      }
+    },
+    [mode, onMarkerAdd]
+  );
+
   return (
     <div className="container-1">
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={8}
+        zoom={10}
         onLoad={onLoad}
         onUnmount={onUnmount}
+        onClick={onClick}
         options={defaultOptions}
       >
         <CurrentLocationMarker position={center} />
+        {markers.map((pos) => {
+          return <Marker position={pos} />;
+        })}
       </GoogleMap>
     </div>
   );
