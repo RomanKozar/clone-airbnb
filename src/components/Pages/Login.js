@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
+import Google_icon from "../../assets/img/google_icon.svg";
+import Github_icon from "../../assets/img/github_icon.svg";
+import Facebook_icon from "../../assets/img/facebook_icon.svg";
+import Email_icon from "../../assets/img/email.svg";
+import HttpsRoundedIcon from "@mui/icons-material/HttpsRounded";
+import Header from "../Header/Header";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/slices/userSlice";
 import { getDatabase, ref, onValue } from "firebase/database";
-
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -14,13 +20,6 @@ import {
 } from "firebase/auth";
 
 import "./login.css";
-
-import Google_icon from "../../assets/img/google_icon.svg";
-import Github_icon from "../../assets/img/github_icon.svg";
-import Facebook_icon from "../../assets/img/facebook_icon.svg";
-import Email_icon from "../../assets/img/email.svg";
-import HttpsRoundedIcon from "@mui/icons-material/HttpsRounded";
-import Header from "../Header/Header";
 
 const useValidation = (value, validations) => {
   const [isEmpty, setEmpty] = useState(true);
@@ -273,7 +272,7 @@ function Login() {
             onBlur={emailValid.onBlur}
             value={emailValid.value}
             placeholder="Введіть свою електронну адресу:"
-            className="input"
+            className="input-input"
             type="text"
           />
         </div>
@@ -302,7 +301,7 @@ function Login() {
             onBlur={passwordValid.onBlur}
             value={passwordValid.value}
             placeholder="Введіть ваш пароль:"
-            className="input"
+            className="input-input"
             type="password"
           />
         </div>

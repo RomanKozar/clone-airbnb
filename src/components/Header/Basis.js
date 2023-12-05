@@ -1,19 +1,19 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import Footer from "../Home/Footer";
+import Cards from "../Home/Cards";
+import Header from "./Header";
+// import Filter from "../Home/Filter";
+import MapTwoToneIcon from "@mui/icons-material/MapTwoTone";
 
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../hooks/use-auth";
 import { removeUser } from "../store/slices/userSlice";
-import Filter from "../Home/Filter";
 import { list } from "../../assets/cards-list";
-import Footer from "../Home/Footer";
-import Cards from "../Home/Cards";
 
 import "./styles.css";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-
-import Header from "./Header";
 
 function Basis() {
   const dispatch = useDispatch();
@@ -33,15 +33,19 @@ function Basis() {
   ) : (
     <>
       <Header />
-      <Filter />
+      {/* <Filter /> */}
       <Cards list={list} />
-      <button
-        onClick={() => {
-          navigate("/showmap");
-        }}
-      >
-        Показати карту
-      </button>
+      <div className="showmap-div">
+        <button
+          className="showmap-but"
+          onClick={() => {
+            navigate("/showmap");
+          }}
+        >
+          Показати карту
+          <MapTwoToneIcon />
+        </button>
+      </div>
       <Footer />
     </>
   );

@@ -1,5 +1,4 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
 import Login from "./components/Pages/Login";
 import Register from "./components/Pages/Register";
 import PremisesAirbnb from "./components/Pages/PremisesAirbnb";
@@ -7,6 +6,8 @@ import Help from "./components/Pages/Help";
 import Search from "components/Pages/search";
 import Basis from "./components/Header/Basis";
 import ShowMap from "./components/Header/ShowMap";
+
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (

@@ -1,12 +1,13 @@
 import React from "react";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
+
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 
 import "./styles.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 function CardSearch({ itemcard }) {
   return (

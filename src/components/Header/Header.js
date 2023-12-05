@@ -1,21 +1,22 @@
 import React, { Fragment } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { DateRangePicker } from "react-date-range";
-import { useSearch } from "./SearchContext";
-
-import "./styles.css";
-import "react-date-range/dist/styles.css";
-import "react-date-range/dist/theme/default.css";
-
 import logo from "../../assets/img/logotip.png";
 import LanguageIcon from "../../assets/img/Langues.svg";
 import BasicMenu from "./ProfileMenu";
 import SimpleBottomNavigation from "./BottomNav";
 import MobileSearchBar from "../MobileSearchBar";
 import SearchRoundedIcon from "../../assets/img/search.svg";
+
+import { Outlet, useNavigate } from "react-router-dom";
+import { DateRangePicker } from "react-date-range";
+import { useSearch } from "./SearchContext";
+
 import GroupAddRoundedIcon from "@mui/icons-material/GroupAddRounded";
 
-function Header({placeholder}) {
+import "./styles.css";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+
+function Header({ placeholder }) {
   const navigate = useNavigate();
 
   //Реалізація пошуку
@@ -76,7 +77,7 @@ function Header({placeholder}) {
               onChange={(e) => setSearchInput(e.target.value)}
               className="search-text-2"
               type="text"
-              placeholder={placeholder || "Start your search"}
+              placeholder={placeholder || "Почніть пошук"}
             />
           </div>
           <div className="search-icon-div">
@@ -115,43 +116,45 @@ function Header({placeholder}) {
         <MobileSearchBar />
         <SimpleBottomNavigation />
       </div>
-      {searchInput && (
-        <div className="date-range">
-          <DateRangePicker
-            ranges={[selectionRange]}
-            minDate={new Date()}
-            rangeColors={["#F9C94F"]}
-            onChange={handleSelect}
-          />
-          <div className="date-number-div">
-            <h2 className="date-number">Number of Guests</h2>
-            <GroupAddRoundedIcon />
-
-            <input
-              value={noOfGuests}
-              onChange={(e) => setNoOfGuests(e.target.value)}
-              type="number"
-              min={1}
-              className="date-number-input"
+      <div className="data-search-bar">
+        {searchInput && (
+          <div className="date-range">
+            <DateRangePicker
+              ranges={[selectionRange]}
+              minDate={new Date()}
+              rangeColors={["#F9C94F"]}
+              onChange={handleSelect}
             />
-          </div>
-          <span className="underline"></span>
-          <div className="data-range-div">
-            <div onClick={resetInput} className="data-range-but">
-              Cancel
+            <div className="date-number-div">
+              <h2 className="date-number">Кількість гостей</h2>
+              <GroupAddRoundedIcon />
+
+              <input
+                value={noOfGuests}
+                onChange={(e) => setNoOfGuests(e.target.value)}
+                type="number"
+                min={1}
+                className="date-number-input"
+              />
             </div>
-            <div
-              onClick={() => {
-                search();
-                handleClose();
-              }}
-              className="data-range-but"
-            >
-              Search
+            <span className="underline"></span>
+            <div className="data-range-div">
+              <div onClick={resetInput} className="data-range-knop">
+                Скасувати
+              </div>
+              <div
+                onClick={() => {
+                  search();
+                  handleClose();
+                }}
+                className="data-range-knop"
+              >
+                Пошук
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       <Outlet />
     </Fragment>

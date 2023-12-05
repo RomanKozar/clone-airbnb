@@ -1,5 +1,10 @@
 export const links = [
   {
+    label: "Всі",
+    imgSrc:
+      "https://cdn2.iconfinder.com/data/icons/list-9-items-2/100/list_9_all-256.png",
+  },
+  {
     label: "Легендарні міста",
     imgSrc:
       "https://cdn1.iconfinder.com/data/icons/line-awesome-vol-2/32/city-solid-512.png",

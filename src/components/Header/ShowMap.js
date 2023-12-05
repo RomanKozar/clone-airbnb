@@ -1,11 +1,13 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Header from "./Header";
-// import Filter from "components/Home/Filter";
 import Map from "components/Map/Map";
+import Autocomplete from "components/Autocomplete/Autocomplete";
+// import Filter from "components/Home/Filter";
+
 import { MODES } from "../Map/Map";
 import { useJsApiLoader } from "@react-google-maps/api";
-import Autocomplete from "components/Autocomplete/Autocomplete";
 import { getBrowserLocation } from "../../utils/geo";
+
 import "./styles.css";
 
 const MAPBOX_API_KEY = "AIzaSyC1WyifFfxQRJFTHCGeyKndlCWLHIKmpLo";
@@ -74,10 +76,10 @@ function ShowMap() {
       <div className="addressSearchContainer">
         <Autocomplete isLoaded={isLoaded} onSelect={onPlaceSelect} />
         <button className="modeToggle" onClick={toggleMode}>
-          Set markers
+        Встановити маркери
         </button>
         <button className="modeToggle" onClick={clear}>
-          Clear
+          Очистити
         </button>
       </div>
       {isLoaded ? (

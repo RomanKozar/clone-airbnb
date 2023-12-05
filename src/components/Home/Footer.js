@@ -1,10 +1,11 @@
 import React from "react";
 import Trips from "./Trips";
-import "./styles.css";
 import LanguageIcon from "../../assets/img/Langues.svg";
 import FacebookIcon from "../../assets/img/facebook.svg";
 import InstagramIcon from "../../assets/img/instagram.png";
 import TelegramIcon from "../../assets/img/telegram.png";
+
+import "./styles.css";
 
 function Footer() {
   return (

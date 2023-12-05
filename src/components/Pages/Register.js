@@ -1,10 +1,19 @@
+import app from "../../firebase";
+import Google_icon from "../../assets/img/google_icon.svg";
+import Github_icon from "../../assets/img/github_icon.svg";
+import Email_icon from "../../assets/img/email.svg";
+import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
+import HttpsRoundedIcon from "@mui/icons-material/HttpsRounded";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import Facebook_icon from "../../assets/img/facebook_icon.svg";
+import Header from "../Header/Header";
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/slices/userSlice";
 import { getDatabase, ref, set } from "firebase/database";
-import app from "../../firebase";
-
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -15,16 +24,6 @@ import {
 } from "firebase/auth";
 
 import "./register.css";
-
-import Google_icon from "../../assets/img/google_icon.svg";
-import Github_icon from "../../assets/img/github_icon.svg";
-import Email_icon from "../../assets/img/email.svg";
-import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
-import HttpsRoundedIcon from "@mui/icons-material/HttpsRounded";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-import Facebook_icon from "../../assets/img/facebook_icon.svg";
-import Header from "../Header/Header";
 
 const useValidation = (value, validations) => {
   const [isEmpty, setEmpty] = useState(true);
@@ -311,7 +310,7 @@ function Register() {
           <AccountCircleOutlinedIcon alt="google" width="20" height="20" />
           <input
             placeholder="Введіть своє ім'я:"
-            className="input"
+            className="input-input"
             type="text"
             value={firstNameValid.value}
             onChange={(e) => {
@@ -330,7 +329,7 @@ function Register() {
           <AccountCircleRoundedIcon alt="google" width="20" height="20" />
           <input
             placeholder="Введіть своє прізвище:"
-            className="input"
+            className="input-input"
             type="text"
             value={lastNameValid.value}
             onChange={(e) => {
@@ -364,7 +363,7 @@ function Register() {
             onBlur={emailValid.onBlur}
             value={emailValid.value}
             placeholder="Введіть свою електронну адресу:"
-            className="input"
+            className="input-input"
             type="text"
           />
           <div className="flex-column-error">
@@ -393,7 +392,7 @@ function Register() {
             onBlur={passwordValid.onBlur}
             value={passwordValid.value}
             placeholder="Введіть ваш пароль:"
-            className="input"
+            className="input-input"
             type="password"
           />
           <div className="flex-column-error">
@@ -412,7 +411,7 @@ function Register() {
           <LockOpenRoundedIcon width="20" height="20" />
           <input
             placeholder="Повторіть ваш пароль:"
-            className="input"
+            className="input-input"
             type="password"
             {...confirmPassword}
           />

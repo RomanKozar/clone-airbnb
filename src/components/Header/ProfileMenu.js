@@ -1,9 +1,11 @@
 import * as React from "react";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import MenuRoundedIcon from "../../assets/img/menu.svg";
 import AccountCircleRoundedIcon from "../../assets/img/user_icon.png";
+
 import { useNavigate } from "react-router-dom";
+
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 import "./styles.css";
 

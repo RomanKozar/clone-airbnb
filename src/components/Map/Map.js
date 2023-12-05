@@ -1,8 +1,9 @@
 import React, { useCallback, useRef } from "react";
 import { GoogleMap } from "@react-google-maps/api";
 import { CurrentLocationMarker } from "../CurrentLocationMarker/CurrentLocationMarker";
-import { defaultTheme } from "./Theme";
+import { defaultTheme } from "../../assets/Theme";
 import { Marker } from "../Marker";
+
 import "./styles.css";
 
 const containerStyle = {

@@ -41,7 +41,7 @@
   transition: 0.2s ease-in-out;
 }
 
-.input {
+.input-input {
   border: none;
   margin-left: 10px;
   border-radius: 10px;
@@ -50,7 +50,7 @@
   height: 80%;
 }
 
-.input:focus {
+.input-input:focus {
   outline: none;
 }
 

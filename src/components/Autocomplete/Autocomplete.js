@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+
 import "./autocomplete.css";
 
 import usePlacesAutocomplete, {
@@ -73,7 +74,7 @@ function Autocomplete({ isLoaded, onSelect }) {
         value={value}
         onChange={handleInput}
         disabled={!ready}
-        placeholder="Where are you going?"
+        placeholder="Куди ви бажаєте поїхати?"
       />
       {status === "OK" && (
         <ul className="suggestions">{renderSuggestions()}</ul>

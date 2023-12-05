@@ -15,13 +15,18 @@
 }
 
 /* .date-range {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  position: sticky;
 } */
 
-.data-range-but {
+.data-search-bar {
+  position: sticky;
+  top: 10px;
+  background-color: white; /* Задайте потрібний вам колір фону */
+  padding: 2px 0px;
+  z-index: 999;
+}
+
+.data-range-knop {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -36,7 +41,7 @@
   margin-left: 8rem;
 }
 
-.data-range-but:hover {
+.data-range-knop:hover {
   background-color: var(--grey);
   box-shadow: 5px 0px 8px 0px rgba(0, 0, 0, 0.35) inset;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -309,5 +314,58 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
-  
+}
+
+.showmap-div {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+.showmap-but {
+  display: flex;
+  height: 40px;
+  margin: 5px;
+  width: 170px;
+  background: #333;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: Consolas, Courier New, monospace;
+  border: solid #404c5d 1px;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #2e2d2d, #212121);
+  -webkit-box-shadow: -1px -5px 15px #41465b, 5px 5px 15px #41465b,
+    inset 5px 5px 10px #212121, inset -5px -5px 10px #212121;
+  box-shadow: -1px -5px 15px #41465b, 5px 5px 15px #41465b,
+    inset 5px 5px 10px #212121, inset -5px -5px 10px #212121;
+}
+
+.showmap-but:hover {
+  -webkit-box-shadow: 1px 1px 13px #20232e, -1px -1px 13px #545b78;
+  box-shadow: 1px 1px 13px #20232e, -1px -1px 13px #545b78;
+  color: #d6d6d6;
+  -webkit-transition: 500ms;
+  transition: 200ms;
+  cursor: pointer;
+}
+
+.showmap-but:active {
+  -webkit-box-shadow: 1px 1px 13px #20232e, -1px -1px 33px #545b78;
+  box-shadow: 1px 1px 13px #20232e, -1px -1px 33px #545b78;
+  color: #d6d6d6;
+  -webkit-transition: 100ms;
+  transition: 100ms;
+  transform: translateY(2px);
 }
