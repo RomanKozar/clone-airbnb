@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from "react";
-import { GoogleMap } from "@react-google-maps/api";
-import { CurrentLocationMarker } from "../CurrentLocationMarker/CurrentLocationMarker";
+import { GoogleMap, MarkerF } from "@react-google-maps/api";
+// import { CurrentLocationMarker } from "../CurrentLocationMarker/CurrentLocationMarker";
 import { defaultTheme } from "../../assets/Theme";
 import { Marker } from "../Marker";
 
@@ -65,7 +65,7 @@ function Map({ center, mode, markers, onMarkerAdd }) {
         onClick={onClick}
         options={defaultOptions}
       >
-        <CurrentLocationMarker position={center} />
+        <MarkerF position={center} />
         {markers.map((pos) => {
           return <Marker position={pos} />;
         })}

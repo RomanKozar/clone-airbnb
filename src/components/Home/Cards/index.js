@@ -1,22 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./card";
 import { links } from "../../../assets/images-links";
-
 import "./styles.css";
+import Filtration from "../Filter/Filtration";
 
 function Cards({ list }) {
-  const [selectedCategory, setSelectedCategory] = useState(0); 
+  const [selectedCategory, setSelectedCategory] = useState(0);
+  const [sortedList, setSortedList] = useState(list);
 
   const handleCategoryClick = (index) => {
     if (selectedCategory === index) {
-      setSelectedCategory(null); 
+      setSelectedCategory(null);
     } else {
-      setSelectedCategory(index); 
+      setSelectedCategory(index);
     }
   };
 
   const resetCategory = () => {
-    setSelectedCategory(0); 
+    setSelectedCategory(0);
+  };
+
+  useEffect(() => {
+    setSortedList(list);
+  }, [list]);
+
+  const sortByPrice = (order) => {
+    const sorted = [...sortedList].sort(
+      (a, b) => parseFloat(a.price) - parseFloat(b.price)
+    );
+    setSortedList(order === "ASC" ? sorted : sorted.reverse());
+  };
+
+  const sortByAlphabet = (order) => {
+    const sorted = [...sortedList].sort((a, b) =>
+      a.title.localeCompare(b.title)
+    );
+    setSortedList(order === "ASC" ? sorted : sorted.reverse());
+  };
+
+  const sortByRating = (order) => {
+    const sorted = [...sortedList].sort(
+      (a, b) => parseFloat(a.rating.replace(",", ".")) - parseFloat(b.rating.replace(",", "."))
+    );
+    setSortedList(order === "ASC" ? sorted : sorted.reverse());
   };
 
   return (
@@ -35,17 +61,23 @@ function Cards({ list }) {
           </div>
         ))}
       </div>
+      <div className="filter-cards-flex">
+        <Filtration
+          sortByPrice={sortByPrice}
+          sortByAlphabet={sortByAlphabet}
+          sortByRating={sortByRating}
+        />
+      </div>
       <div className="cards-flex">
-        {/* Тут відображення карток за вибраною категорією */}
         {selectedCategory !== null
-          ? list
+          ? sortedList
               .filter((card) =>
                 selectedCategory === 0
                   ? true
                   : card.category === (selectedCategory - 1).toString()
               )
               .map((card, i) => <Card card={card} key={i} />)
-          : list.map((card, i) => <Card card={card} key={i} />)}
+          : sortedList.map((card, i) => <Card card={card} key={i} />)}
       </div>
     </div>
   );
