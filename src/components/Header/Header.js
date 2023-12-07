@@ -101,6 +101,14 @@ function Header({ placeholder }) {
           >
             Запропонувати помешкання на Airbnb
           </div>
+          <div
+            className="airbnb-your-home"
+            onClick={() => {
+              navigate("/booking");
+            }}
+          >
+            Мої бронювання
+          </div>
           <div className="global-div">
             <img
               src={LanguageIcon}

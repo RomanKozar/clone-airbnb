@@ -32,9 +32,10 @@ function CardSearch({ itemcard }) {
       <div className="searchResult__info">
         <div className="searchResult_infoTop">
           <p>{itemcard.title}</p>
-          <h3>{itemcard.desc}</h3>
+          <h3>{itemcard.desc}</h3>  
           <p>_____</p>
           <p>{itemcard.data}</p>
+          <div className="search-cerds-bron">Забронювати</div>
         </div>
 
         <div className="searchResult__infoBottom">

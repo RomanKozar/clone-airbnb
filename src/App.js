@@ -1,13 +1,16 @@
-import "./App.css";
+// import Payment from "components/Pages/Payment";
 import Login from "./components/Pages/Login";
 import Register from "./components/Pages/Register";
 import PremisesAirbnb from "./components/Pages/PremisesAirbnb";
 import Help from "./components/Pages/Help";
-import Search from "components/Pages/search";
+import Search from "components/Pages/Search";
 import Basis from "./components/Header/Basis";
 import ShowMap from "./components/Header/ShowMap";
+import MyBookings from "components/Pages/MyBookings";
 
 import { Routes, Route } from "react-router-dom";
+
+import "./App.css";
 
 function App() {
   return (
@@ -20,6 +23,8 @@ function App() {
         <Route path="/search/:searchInput" element={<Search />} />
         <Route path="/showmap" element={<ShowMap />} />
         <Route path="/help" element={<Help />} />
+        <Route path="/booking" element={<MyBookings />} />
+        {/* <Route path="/many" element={<Payment />} /> */}
       </Routes>
     </div>
   );

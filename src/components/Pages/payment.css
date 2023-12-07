@@ -1,0 +1,109 @@
+/* .popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #000000;
+  padding: 20px;
+  z-index: 999;
+} */
+
+.form-pay {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  gap: 10px;
+  background-color: #ffffff;
+  margin: 0 auto; /* Встановлюємо автоматичні відступи зліва та справа */
+  width: 480px;
+  height: 650px;
+  border-radius: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  border: 2px solid var(--theme);
+  box-shadow: 3px -2px 6px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.popup-content {
+  text-align: center;
+  overflow: auto;
+}
+
+.input-input-pay {
+  border: none;
+  margin-left: 10px;
+  border-radius: 10px;
+  width: 80%;
+  height: 80%;
+}
+
+.input-input-pay:focus {
+  outline: none;
+}
+
+.inputForm-pay {
+  border: 2px solid var(--theme);
+  border-radius: 10px;
+  display: flex;
+  height: 35px;
+  align-items: center;
+  padding-left: 10px;
+  transition: 0.2s ease-in-out;
+  margin-bottom: 10px; /* Додано відступ між елементами */
+}
+
+.rdrDateRangePickerWrapper {
+  display: inline-flex;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  width: 300px;
+  height: 300px;
+}
+
+.date-range-pay {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.date-number-pay {
+  padding-right: 20rem;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.date-number-div-pay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 55px 0px 0px;
+}
+
+.date-number-input-pay {
+  padding-left: 0.5rem;
+  font-size: 16px;
+  outline: none;
+  color: #4b5563;
+  width: 35px;
+}
+
+.modul {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: default;
+}

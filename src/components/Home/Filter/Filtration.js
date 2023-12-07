@@ -2,6 +2,7 @@ import * as React from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
+import FilterAltRoundedIcon from "@mui/icons-material/FilterAltRounded";
 
 import "./styles.css";
 
@@ -48,6 +49,7 @@ export default function Filtration({
         onClick={handleClick}
         className="button"
       >
+        <FilterAltRoundedIcon style={{ width: "17px", height: "17px" }} />
         Фільтрація
       </button>
 
