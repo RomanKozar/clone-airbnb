@@ -39,7 +39,7 @@ function Search() {
       />
       <div className="searchPage">
         <div className="searchPage__info">
-          <p className="text-xs">
+          <p>
             Перебування з - {range} - для {noOfGuests} гостей
           </p>
           <h1 className="search-trips">Ви знаходитеся в {searchInput}</h1>
