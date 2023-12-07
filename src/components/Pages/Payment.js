@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import GroupAddRoundedIcon from "@mui/icons-material/GroupAddRounded";
 
 import { DateRangePicker } from "react-date-range";
-import { useSearch } from "../Header/SearchContext";
 
 import "./payment.css";
 
 function Payment({ onClose }) {
-  const { noOfGuests, setNoOfGuests, handleSelect, selectionRange } =
-    useSearch();
+  const [noOfGuests, setNoOfGuests] = useState(1);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: "selection",
+  };
+
+  const handleSelect = (ranges) => {
+    setStartDate(ranges.selection.startDate);
+    setEndDate(ranges.selection.endDate);
+  };
+
   return (
     <div className="modul">
       <div className="form-pay">
