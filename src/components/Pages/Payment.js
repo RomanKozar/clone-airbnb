@@ -1,14 +1,14 @@
 import React from "react";
-import GroupAddRoundedIcon from "@mui/icons-material/GroupAddRounded";
+// import GroupAddRoundedIcon from "@mui/icons-material/GroupAddRounded";
 
-import { DateRangePicker } from "react-date-range";
-import { useSearch } from "../Header/SearchContext";
+// import { DateRangePicker } from "react-date-range";
+// import { useSearch } from "../Header/SearchContext";
 
 import "./payment.css";
 
 function Payment({ onClose }) {
-  const { noOfGuests, setNoOfGuests, handleSelect, selectionRange } =
-    useSearch();
+  //   const { noOfGuests, setNoOfGuests, handleSelect, selectionRange } =
+  //     useSearch();
   return (
     <div className="modul">
       <div className="form-pay">
@@ -34,7 +34,7 @@ function Payment({ onClose }) {
               type="text"
             />
           </div>
-          <div className="date-range-pay">
+          {/* <div className="date-range-pay">
             <DateRangePicker
               ranges={[selectionRange]}
               minDate={new Date()}
@@ -54,7 +54,7 @@ function Payment({ onClose }) {
               />
             </div>
             <span className="underline"></span>
-          </div>
+          </div> */}
 
           <button onClick={onClose}>Закрити</button>
         </div>
