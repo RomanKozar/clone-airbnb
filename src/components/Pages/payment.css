@@ -22,7 +22,7 @@
   gap: 10px;
   background-color: #ffffff;
   margin: 0 auto; /* Встановлюємо автоматичні відступи зліва та справа */
-  width: 480px;
+  width: 600px;
   height: 650px;
   border-radius: 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -59,19 +59,10 @@
   margin-bottom: 10px; /* Додано відступ між елементами */
 }
 
-.rdrDateRangePickerWrapper {
-  display: inline-flex;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  width: 300px;
-  height: 300px;
-}
-
-.date-range-pay {
+/* .date-range-pay {
   display: flex;
   flex-wrap: wrap;
-}
+} */
 
 .date-number-pay {
   padding-right: 20rem;
@@ -83,7 +74,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 55px 0px 0px;
 }
 
 .date-number-input-pay {
