@@ -25,7 +25,6 @@ function Basis() {
   return isAuth && id ? (
     <div>
       <h1>Welcom</h1>
-
       <button onClick={() => dispatch(removeUser())}>
         Log out from {email}
       </button>

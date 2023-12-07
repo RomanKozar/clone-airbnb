@@ -63,14 +63,14 @@ function Card({ card }) {
         <span style={{ color: "var(--black)", fontWeight: "600" }}>
           ${card.price} ніч
         </span>
-        <div
+        <p
           className="card-info-bron"
           onClick={() => {
             handleBooking();
           }}
         >
           Забронювати
-        </div>
+        </p>
       </p>
 
       {/* Відображення Popup, якщо showPopup === true */}

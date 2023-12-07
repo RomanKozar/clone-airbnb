@@ -14,40 +14,40 @@ function Footer() {
       <div className="footer-div">
         <div className="name-div">
           <h5 className="name-h">Підтримка</h5>
-          <p class="name-p">Довідковий центр</p>
-          <p class="name-p">AirCover</p>
-          <p class="name-p">Протидія дискримінації</p>
-          <p class="name-p">Підтримка людей з інвалідністю</p>
-          <p class="name-p">Варіанти скасування бронювань</p>
-          <p class="name-p">Надіслати скаргу від сусідів</p>
+          <p className="name-p">Довідковий центр</p>
+          <p className="name-p">AirCover</p>
+          <p className="name-p">Протидія дискримінації</p>
+          <p className="name-p">Підтримка людей з інвалідністю</p>
+          <p className="name-p">Варіанти скасування бронювань</p>
+          <p className="name-p">Надіслати скаргу від сусідів</p>
         </div>
 
         <div className="name-div">
           <h5 className="name-h">Прийом гостей</h5>
-          <p class="name-p">Перетворити помешкання на Airbnb</p>
-          <p class="name-p">AirCover для господарів</p>
-          <p class="name-p">Ресурси про прийом гостей</p>
-          <p class="name-p">Форум спільноти</p>
-          <p class="name-p">Відповідальний прийом гостей</p>
+          <p className="name-p">Перетворити помешкання на Airbnb</p>
+          <p className="name-p">AirCover для господарів</p>
+          <p className="name-p">Ресурси про прийом гостей</p>
+          <p className="name-p">Форум спільноти</p>
+          <p className="name-p">Відповідальний прийом гостей</p>
         </div>
 
         <div className="name-div">
           <h5 className="name-h">Airbnb</h5>
-          <p class="name-p">Новини</p>
-          <p class="name-p">Нові функції</p>
-          <p class="name-p">Вакансії</p>
-          <p class="name-p">Інвестори</p>
-          <p class="name-p">Тимчасове житло від Airbnb.org</p>
+          <p className="name-p">Новини</p>
+          <p className="name-p">Нові функції</p>
+          <p className="name-p">Вакансії</p>
+          <p className="name-p">Інвестори</p>
+          <p className="name-p">Тимчасове житло від Airbnb.org</p>
         </div>
 
         <div className="name-div">
           <h5 className="name-h">Компанія</h5>
-          <p class="name-p">Про Clone-Airbnb</p>
-          <p class="name-p">Партнерська мережа</p>
-          <p class="name-p">Реферальна програма</p>
-          <p class="name-p">Код купона</p>
-          <p class="name-p">Стати дописувачем</p>
-          <p class="name-p">Запитати цінову пропозицію</p>
+          <p className="name-p">Про Clone-Airbnb</p>
+          <p className="name-p">Партнерська мережа</p>
+          <p className="name-p">Реферальна програма</p>
+          <p className="name-p">Код купона</p>
+          <p className="name-p">Стати дописувачем</p>
+          <p className="name-p">Запитати цінову пропозицію</p>
         </div>
       </div>
       <div className="footer-bottom">
