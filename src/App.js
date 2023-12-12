@@ -2,7 +2,7 @@ import Login from "./components/Pages/Login";
 import Register from "./components/Pages/Register";
 import PremisesAirbnb from "./components/Pages/PremisesAirbnb";
 import Help from "./components/Pages/Help";
-import Search from "./components/Pages/Search";
+import Search from "./components/Pages/search";
 import Basis from "./components/Header/Basis";
 import ShowMap from "./components/Header/ShowMap";
 import MyBookings from "./components/Pages/MyBookings";
