@@ -5,7 +5,7 @@ import Help from "./components/Pages/Help";
 import Search from "./components/Pages/Search";
 import Basis from "./components/Header/Basis";
 import ShowMap from "./components/Header/ShowMap";
-import MyBookings from "components/Pages/MyBookings";
+import MyBookings from "./components/Pages/MyBookings";
 
 import { Routes, Route } from "react-router-dom";
 

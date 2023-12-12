@@ -6,7 +6,7 @@ import "../src/firebase.js";
 
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import { store } from "components/store";
+import { store } from "./components/store";
 import { SearchProvider } from "./components/Header/SearchContext";
 
 import "./index.css";

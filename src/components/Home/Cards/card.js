@@ -9,7 +9,7 @@ import "./styles.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import Payment from "components/Pages/Payment";
+import Payment from "./components/Pages/Payment";
 
 function Card({ card }) {
   // const navigate = useNavigate();
