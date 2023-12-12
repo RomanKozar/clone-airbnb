@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,8 +8,18 @@ import "./styles.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import Payment from "components/Pages/Payment";
 
 function CardSearch({ itemcard }) {
+  const [showPopup, setShowPopup] = useState(false); // Стан для відображення вспливаючого вікна
+
+  const handleBooking = () => {
+    setShowPopup(true); // Показати вспливаюче вікно після бронювання
+  };
+
+  const closePopup = () => {
+    setShowPopup(false); // Закрити вспливаюче вікно
+  };
   return (
     <div className="searchResult">
       <Swiper
@@ -35,7 +45,15 @@ function CardSearch({ itemcard }) {
           <h3>{itemcard.desc}</h3>
           <p>_____</p>
           <p>{itemcard.data}</p>
-          <p className="search-cerds-bron">Забронювати</p>
+          <p
+            className="search-cerds-bron"
+            onClick={() => {
+              handleBooking();
+            }}
+          >
+            Забронювати
+          </p>
+          {showPopup && <Payment onClose={closePopup} />}
         </div>
 
         <div className="searchResult__infoBottom">

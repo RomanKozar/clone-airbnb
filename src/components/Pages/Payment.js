@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import GroupAddRoundedIcon from "@mui/icons-material/GroupAddRounded";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 import { DateRangePicker } from "react-date-range";
 
@@ -22,9 +23,17 @@ function Payment({ onClose }) {
   };
 
   return (
-    <div className="modul">
+    <div
+      className="modul"
+      onClick={() => {
+        onClose();
+      }}
+    >
       <div className="form-pay">
         <div className="popup-content">
+          <div className="popup-close" onClick={onClose}>
+            <CloseRoundedIcon />
+          </div>
           <div className="inputForm-pay">
             <input
               placeholder="Введіть своє ім'я:"
@@ -68,7 +77,16 @@ function Payment({ onClose }) {
             <span className="underline"></span>
           </div>
 
-          <button onClick={onClose}>Закрити</button>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div
+              className="card-info-bron-pay"
+              onClick={() => {
+                onClose();
+              }}
+            >
+              Забронювати
+            </div>
+          </div>
         </div>
       </div>
     </div>
