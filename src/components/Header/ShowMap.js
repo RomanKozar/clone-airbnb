@@ -13,8 +13,8 @@ import "./styles.css";
 const MAPBOX_API_KEY = "AIzaSyC1WyifFfxQRJFTHCGeyKndlCWLHIKmpLo";
 
 const defaultCenter = {
-  lat: 51.509865,
-  lng: -0.118092,
+  lat: 50.4501,
+  lng: 30.5234,
 };
 
 const libraries = ["places"];
@@ -76,7 +76,7 @@ function ShowMap() {
       <div className="addressSearchContainer">
         <Autocomplete isLoaded={isLoaded} onSelect={onPlaceSelect} />
         <button className="modeToggle" onClick={toggleMode}>
-        Встановити маркери
+          Встановити маркери
         </button>
         <button className="modeToggle" onClick={clear}>
           Очистити

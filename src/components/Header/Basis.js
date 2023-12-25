@@ -23,12 +23,26 @@ function Basis() {
   const navigate = useNavigate();
 
   return isAuth && id ? (
-    <div>
-      <h1>Welcom</h1>
+    <>
       <button onClick={() => dispatch(removeUser())}>
         Log out from {email}
       </button>
-    </div>
+      <Header />
+      {/* <Filter /> */}
+      <Cards list={list} />
+      <div className="showmap-div">
+        <button
+          className="showmap-but"
+          onClick={() => {
+            navigate("/showmap");
+          }}
+        >
+          Показати карту
+          <MapTwoToneIcon />
+        </button>
+      </div>
+      <Footer />
+    </>
   ) : (
     <>
       <Header />

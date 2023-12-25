@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import GroupAddRoundedIcon from "@mui/icons-material/GroupAddRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
@@ -11,11 +11,26 @@ function Payment({ onClose }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
+  const modalRef = useRef(null);
+
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
     key: "selection",
   };
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        onClose();
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [onClose]);
 
   const handleSelect = (ranges) => {
     setStartDate(ranges.selection.startDate);
@@ -25,11 +40,11 @@ function Payment({ onClose }) {
   return (
     <div
       className="modul"
-      onClick={() => {
-        onClose();
-      }}
+      // onClick={() => {
+      //   onClose();
+      // }}
     >
-      <div className="form-pay">
+      <div ref={modalRef} className="form-pay">
         <div className="popup-content">
           <div className="popup-close" onClick={onClose}>
             <CloseRoundedIcon />
