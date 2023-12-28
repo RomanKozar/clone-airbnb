@@ -41,10 +41,52 @@
   background-color: var(--white) !important;
 }
 
-.cards-flex {
+.cards-flex-boo {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   padding: 1rem 3rem;
+}
+
+.card-info-bron-boo {
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  justify-content: center;
+  top: 5px;
+  padding: 10px 14px;
+  font-size: 14px;
+  width: 180px;
+  color: #000000;
+  border: 2px solid #ff0000;
+  border-radius: 34px;
+  background-color: #ff0000;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+}
+
+.card-info-bron-boo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: #ff0000;
+  /* transition: all 0.1s cubic-bezier(0.23, 1, 0.32, 1); */
+}
+
+.card-info-bron-boo:hover::before {
+  scale: 3;
+}
+
+.card-info-bron-boo:hover {
+  color: #212121;
+  scale: 1.1;
+  box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
 }

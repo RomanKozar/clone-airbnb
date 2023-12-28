@@ -23,10 +23,24 @@ function MyBookings() {
       });
   }, []);
 
+  const handleDeleteBooking = (id) => {
+    axios
+      .delete(`http://localhost:3001/bookings/${id}`)
+      .then((response) => {
+        // Об'єкт успішно видалено з бази даних
+        // Оновити стан компоненту, щоб відобразити зміни
+        const updatedBookings = bookings.filter((booking) => booking.id !== id);
+        setBookings(updatedBookings);
+      })
+      .catch((error) => {
+        console.error("Помилка видалення об'єкта з сервера:", error);
+      });
+  };
+
   return (
     <div>
       <Header />
-      <div className="cards-flex">
+      <div className="cards-flex-boo">
         {bookings.map((booking, index) => (
           <div key={index} className="card-box">
             <Swiper
@@ -70,6 +84,16 @@ function MyBookings() {
                 Гості {booking.noOfGuests}
               </span>
             </p>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <div
+                className="card-info-bron-boo"
+                onClick={() => {
+                  handleDeleteBooking(booking.id);
+                }}
+              >
+                Видалити
+              </div>
+            </div>
           </div>
         ))}
       </div>

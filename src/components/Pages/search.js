@@ -43,10 +43,7 @@ function Search() {
         placeholder={`${searchInput} | ${range} | ${noOfGuests} гостей`}
       />
       <div className="searchPage">
-        {/* Остання частина компонента не змінюється */}
-        {/* ... ваш інший код ... */}
         <CardsSearch list={filteredData} />
-        {/* ... ваш інший код ... */}
       </div>
       <Footer />
     </div>

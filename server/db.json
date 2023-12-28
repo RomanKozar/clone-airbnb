@@ -646,26 +646,5 @@
       "data": "26 лист. - 1 груд."
     }
   ],
-  "bookings": [
-    {
-      "startDate": "2023-12-28T22:05:52.728Z",
-      "endDate": "2023-12-28T22:05:52.728Z",
-      "noOfGuests": 1,
-      "title": "Spetses, Греція",
-      "imgSrc": [
-        "https://a0.muscache.com/im/pictures/e2e5beb1-239f-4263-b449-c7107e30ebf9.jpg?im_w=1200",
-        "https://a0.muscache.com/im/pictures/miso/Hosting-26255617/original/510d4f70-3cbf-4582-ba07-83d52ab63113.jpeg?im_w=720",
-        "https://a0.muscache.com/im/pictures/miso/Hosting-26255617/original/13263476-ac5b-4a4e-af85-3bfad59d85d6.jpeg?im_w=720",
-        "https://a0.muscache.com/im/pictures/miso/Hosting-26255617/original/2af3a06f-df66-462e-9467-0215e0089f2b.jpeg?im_w=720"
-      ],
-      "rating": "5",
-      "category": "1",
-      "desc": "На відстані 1403 кілометра",
-      "price": "481",
-      "data": "13-18 лист.",
-      "firstName": "іва",
-      "lastName": "іва",
-      "id": 1
-    }
-  ]
+  "bookings": []
 }
