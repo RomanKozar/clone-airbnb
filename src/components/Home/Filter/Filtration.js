@@ -4,6 +4,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import FilterAltRoundedIcon from "@mui/icons-material/FilterAltRounded";
 
+
 import "./styles.css";
 
 export default function Filtration({
@@ -38,7 +39,6 @@ export default function Filtration({
         break;
     }
   };
-
   return (
     <div>
       <button

@@ -1,26 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../Home/Footer";
 import Cards from "../Home/Cards";
 import Header from "./Header";
-// import Filter from "../Home/Filter";
 import MapTwoToneIcon from "@mui/icons-material/MapTwoTone";
-
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../hooks/use-auth";
 import { removeUser } from "../store/slices/userSlice";
-import { list } from "../../assets/cards-list";
-
+import axios from "axios"; // Імпортуємо axios для виконання запитів
 import "./styles.css";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
 function Basis() {
   const dispatch = useDispatch();
-
-  const { isAuth, email, id } = useAuth();
-
   const navigate = useNavigate();
+  const { isAuth, email, id } = useAuth();
+  const [cardsFromServer, setCardsFromServer] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/cards")
+      .then((response) => {
+        setCardsFromServer(response.data);
+      })
+      .catch((error) => {
+        console.error("Помилка отримання даних з сервера: ", error);
+      });
+  }, []);
 
   return isAuth && id ? (
     <>
@@ -28,8 +35,7 @@ function Basis() {
         Log out from {email}
       </button>
       <Header />
-      {/* <Filter /> */}
-      <Cards list={list} />
+      <Cards list={cardsFromServer} /> 
       <div className="showmap-div">
         <button
           className="showmap-but"
@@ -46,8 +52,7 @@ function Basis() {
   ) : (
     <>
       <Header />
-      {/* <Filter /> */}
-      <Cards list={list} />
+      <Cards list={cardsFromServer} /> 
       <div className="showmap-div">
         <button
           className="showmap-but"

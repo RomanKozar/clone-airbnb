@@ -13,13 +13,17 @@ import Payment from "components/Pages/Payment";
 function CardSearch({ itemcard }) {
   const [showPopup, setShowPopup] = useState(false); // Стан для відображення вспливаючого вікна
 
-  const handleBooking = () => {
-    setShowPopup(true); // Показати вспливаюче вікно після бронювання
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+
+  const handleBooking = (index) => {
+    setSelectedImageIndex(index);
+    setShowPopup(true);
   };
 
   const closePopup = () => {
-    setShowPopup(false); // Закрити вспливаюче вікно
+    setShowPopup(false);
   };
+
   return (
     <div className="searchResult">
       <Swiper
@@ -53,7 +57,13 @@ function CardSearch({ itemcard }) {
           >
             Забронювати
           </p>
-          {showPopup && <Payment onClose={closePopup} />}
+          {showPopup && (
+            <Payment
+              onClose={closePopup}
+              selectedImageIndex={selectedImageIndex}
+              cardData={itemcard} // Передача об'єкта з даними картки
+            />
+          )}
         </div>
 
         <div className="searchResult__infoBottom">

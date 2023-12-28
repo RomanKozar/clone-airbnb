@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
-// import { useNavigate } from "react-router-dom";
-
 import "./styles.css";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -12,23 +9,16 @@ import "swiper/css/navigation";
 import Payment from "components/Pages/Payment";
 
 function Card({ card }) {
-  // const navigate = useNavigate();
-  // const [isBooked, setIsBooked] = useState(false);
-  const [showPopup, setShowPopup] = useState(false); // Стан для відображення вспливаючого вікна
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
-  // const handleBooking = () => {
-  //   if (!isBooked) {
-  //     console.log(`Заброньовано: ${card.title}`);
-  //     setIsBooked(true);
-  //     setShowPopup(true); // Показати вспливаюче вікно після бронювання
-  //   }
-  // };
-  const handleBooking = () => {
-    setShowPopup(true); // Показати вспливаюче вікно після бронювання
+  const handleBooking = (index) => {
+    setSelectedImageIndex(index);
+    setShowPopup(true);
   };
 
   const closePopup = () => {
-    setShowPopup(false); // Закрити вспливаюче вікно
+    setShowPopup(false);
   };
 
   return (
@@ -46,7 +36,12 @@ function Card({ card }) {
       >
         {card.imgSrc.map((src, i) => (
           <SwiperSlide key={i}>
-            <img src={src} alt="Error" className="card-img" />
+            <img
+              src={src}
+              alt="Error"
+              className="card-img"
+              onClick={() => handleBooking(i)} // Додати onClick, який передає індекс картинки
+            />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -66,7 +61,7 @@ function Card({ card }) {
         <p
           className="card-info-bron"
           onClick={() => {
-            handleBooking();
+            handleBooking(null); // Скидання обраної картинки при натисканні "Забронювати"
           }}
         >
           Забронювати
@@ -74,7 +69,13 @@ function Card({ card }) {
       </p>
 
       {/* Відображення Popup, якщо showPopup === true */}
-      {showPopup && <Payment onClose={closePopup} />}
+      {showPopup && (
+        <Payment
+          onClose={closePopup}
+          selectedImageIndex={selectedImageIndex}
+          cardData={card} // Передача об'єкта з даними картки
+        />
+      )}
     </div>
   );
 }

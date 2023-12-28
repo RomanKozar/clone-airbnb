@@ -3,10 +3,24 @@ import Card from "./card";
 import { links } from "../../../assets/images-links";
 import "./styles.css";
 import Filtration from "../Filter/Filtration";
+import axios from "axios";
 
-function Cards({ list }) {
+function Cards() {
+  const [dataFromAPI, setDataFromAPI] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(0);
-  const [sortedList, setSortedList] = useState(list);
+  const [sortedList, setSortedList] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/cards")
+      .then((response) => {
+        setDataFromAPI(response.data);
+        setSortedList(response.data);
+      })
+      .catch((error) => {
+        console.error("Помилка отримання даних з сервера: ", error);
+      });
+  }, []);
 
   const handleCategoryClick = (index) => {
     if (selectedCategory === index) {
@@ -20,35 +34,43 @@ function Cards({ list }) {
     setSelectedCategory(0);
   };
 
-  useEffect(() => {
-    setSortedList(list);
-  }, [list]);
-
   const sortByPrice = (order) => {
-    const sorted = [...sortedList].sort(
-      (a, b) => parseFloat(a.price) - parseFloat(b.price)
-    );
-    setSortedList(order === "ASC" ? sorted : sorted.reverse());
+    axios
+      .get(`http://localhost:3001/cards?_sort=price&_order=${order}`)
+      .then((response) => {
+        setSortedList(response.data);
+      })
+      .catch((error) => {
+        console.error("Помилка сортування за ціною: ", error);
+      });
   };
 
   const sortByAlphabet = (order) => {
-    const sorted = [...sortedList].sort((a, b) =>
-      a.title.localeCompare(b.title)
-    );
-    setSortedList(order === "ASC" ? sorted : sorted.reverse());
+    axios
+      .get(`http://localhost:3001/cards?_sort=title&_order=${order}`)
+      .then((response) => {
+        setSortedList(response.data);
+      })
+      .catch((error) => {
+        console.error("Помилка сортування за алфавітом: ", error);
+      });
   };
 
   const sortByRating = (order) => {
-    const sorted = [...sortedList].sort(
-      (a, b) => parseFloat(a.rating.replace(",", ".")) - parseFloat(b.rating.replace(",", "."))
-    );
-    setSortedList(order === "ASC" ? sorted : sorted.reverse());
+    axios
+      .get(`http://localhost:3001/cards?_sort=rating&_order=${order}`)
+      .then((response) => {
+        setSortedList(response.data);
+      })
+      .catch((error) => {
+        console.error("Помилка сортування за рейтингом: ", error);
+      });
   };
 
   return (
     <div className="cards-container">
       <div className="filter-div">
-        {links.map((item, i) => (
+        {links.map((dataFromAPI, i) => (
           <div
             key={i}
             className={`links-box ${
@@ -56,8 +78,8 @@ function Cards({ list }) {
             }`}
             onClick={() => (i === 0 ? resetCategory() : handleCategoryClick(i))}
           >
-            <img alt="Cat" src={item.imgSrc} className="links-img" />
-            <p className="links-label">{item.label}</p>
+            <img alt="Cat" src={dataFromAPI.imgSrc} className="links-img" />
+            <p className="links-label">{dataFromAPI.label}</p>
           </div>
         ))}
       </div>

@@ -6,10 +6,30 @@ import { DateRangePicker } from "react-date-range";
 
 import "./payment.css";
 
-function Payment({ onClose }) {
+import axios from "axios";
+
+export const sendBookingData = async (bookingData) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:3001/bookings",
+      bookingData
+    );
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Помилка при відправленні даних бронювання на сервер: ",
+      error
+    );
+    throw new Error("Помилка при відправленні даних бронювання на сервер");
+  }
+};
+
+function Payment({ onClose, cardData }) {
   const [noOfGuests, setNoOfGuests] = useState(1);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const modalRef = useRef(null);
 
@@ -37,6 +57,32 @@ function Payment({ onClose }) {
     setEndDate(ranges.selection.endDate);
   };
 
+  const handleBookingConfirmation = () => {
+    const bookingData = {
+      startDate: startDate,
+      endDate: endDate,
+      noOfGuests: noOfGuests,
+      title: cardData.title,
+      imgSrc: cardData.imgSrc,
+      rating: cardData.rating,
+      category: cardData.category,
+      desc: cardData.desc,
+      price: cardData.price,
+      data: cardData.data,
+      firstName: firstName,
+      lastName: lastName,
+    };
+
+    sendBookingData(bookingData)
+      .then((response) => {
+        console.log("Дані успішно відправлено на сервер:", response);
+        onClose();
+      })
+      .catch((error) => {
+        console.error("Помилка відправлення даних на сервер:", error);
+      });
+  };
+
   return (
     <div
       className="modul"
@@ -51,16 +97,20 @@ function Payment({ onClose }) {
           </div>
           <div className="inputForm-pay">
             <input
-              placeholder="Введіть своє ім'я:"
+              placeholder="Введіть своє ім'я"
               className="input-input-pay"
               type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
           <div className="inputForm-pay">
             <input
-              placeholder="Введіть своє прізвище:"
+              placeholder="Введіть своє прізвище"
               className="input-input-pay"
               type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
           <div className="inputForm-pay">
@@ -97,6 +147,7 @@ function Payment({ onClose }) {
               className="card-info-bron-pay"
               onClick={() => {
                 onClose();
+                handleBookingConfirmation();
               }}
             >
               Забронювати
