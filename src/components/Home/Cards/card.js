@@ -61,7 +61,7 @@ function Card({ card }) {
         <p
           className="card-info-bron"
           onClick={() => {
-            handleBooking(null); // Скидання обраної картинки при натисканні "Забронювати"
+            handleBooking(null); 
           }}
         >
           Забронювати

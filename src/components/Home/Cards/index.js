@@ -14,10 +14,12 @@ function Cards() {
   }, [selectedCategory]);
 
   const fetchData = (category) => {
-    let url = "http://localhost:3001/cards";
+    let baseUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
+    let url = `${baseUrl}/cards`;
 
     if (category !== 0) {
-      url = `http://localhost:3001/cards?category=${category - 1}`;
+      url = `${baseUrl}/cards?category=${category - 1}`;
     }
 
     axios

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../hooks/use-auth";
 import { removeUser } from "../store/slices/userSlice";
-import axios from "axios"; // Імпортуємо axios для виконання запитів
+import axios from "axios"; 
 import "./styles.css";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
