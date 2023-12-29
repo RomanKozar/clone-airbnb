@@ -646,5 +646,45 @@
       "data": "26 лист. - 1 груд."
     }
   ],
-  "bookings": []
+  "bookings": [
+    {
+      "startDate": "2023-12-29T15:57:41.266Z",
+      "endDate": "2023-12-29T15:57:41.266Z",
+      "noOfGuests": "2",
+      "title": "Париж, Франція",
+      "imgSrc": [
+        "https://a0.muscache.com/im/pictures/prohost-api/Hosting-45967096/original/c04c76cb-285c-43a2-a537-889b18be6e52.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/prohost-api/Hosting-45967096/original/984b2635-c05a-4d48-ac29-6f1523e5f96d.jpeg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/prohost-api/Hosting-45967096/original/55597a03-4b29-463f-b6c3-0803774035ae.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/prohost-api/Hosting-45967096/original/55597a03-4b29-463f-b6c3-0803774035ae.jpeg?im_w=720"
+      ],
+      "rating": "5",
+      "category": "0",
+      "desc": "На відстані 1573 кілометра",
+      "price": "1350",
+      "data": "1-6 груд.",
+      "firstName": "Test",
+      "lastName": "1",
+      "id": 1
+    },
+    {
+      "startDate": "2023-12-28T22:00:00.000Z",
+      "endDate": "2023-12-30T22:00:00.000Z",
+      "noOfGuests": "5",
+      "title": "Slavs'ke, Україна",
+      "imgSrc": [
+        "https://a0.muscache.com/im/pictures/cfba0edd-ca61-4ec5-93e3-0ff5e1e254d8.jpg?im_w=1200",
+        "https://a0.muscache.com/im/pictures/2b22fec5-2296-464d-b879-6ed172c29960.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/74b12439-8afd-4446-ab0a-69aaa7314517.jpg?im_w=1200"
+      ],
+      "rating": "4,95",
+      "category": "2",
+      "desc": "На відстані 118 кілометра",
+      "price": "37",
+      "data": "28 лист. - 3 груд.",
+      "firstName": "Ваня",
+      "lastName": "тест",
+      "id": 2
+    }
+  ]
 }

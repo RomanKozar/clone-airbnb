@@ -40,6 +40,39 @@ function Cards() {
     }
   };
 
+  const sortByPrice = (order) => {
+    axios
+      .get(`http://localhost:3001/cards?_sort=price&_order=${order}`)
+      .then((response) => {
+        setSortedList(response.data);
+      })
+      .catch((error) => {
+        console.error("Помилка сортування за ціною: ", error);
+      });
+  };
+
+  const sortByAlphabet = (order) => {
+    axios
+      .get(`http://localhost:3001/cards?_sort=title&_order=${order}`)
+      .then((response) => {
+        setSortedList(response.data);
+      })
+      .catch((error) => {
+        console.error("Помилка сортування за алфавітом: ", error);
+      });
+  };
+
+  const sortByRating = (order) => {
+    axios
+      .get(`http://localhost:3001/cards?_sort=rating&_order=${order}`)
+      .then((response) => {
+        setSortedList(response.data);
+      })
+      .catch((error) => {
+        console.error("Помилка сортування за рейтингом: ", error);
+      });
+  };
+
   return (
     <div className="cards-container">
       <div className="filter-div">
@@ -57,7 +90,11 @@ function Cards() {
         ))}
       </div>
       <div className="filter-cards-flex">
-        <Filtration />
+        <Filtration
+          sortByPrice={sortByPrice}
+          sortByAlphabet={sortByAlphabet}
+          sortByRating={sortByRating}
+        />
       </div>
       <div className="cards-flex">
         {sortedList.map((card, i) => (
